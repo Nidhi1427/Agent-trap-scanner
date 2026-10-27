@@ -1,0 +1,172 @@
+{
+  "name": "keyword",
+  "threshold": 0.5,
+  "threshold_selected_on": "val",
+  "test": {
+    "n": 510,
+    "accuracy": 0.6392156862745098,
+    "fpr": 0.011764705882352941,
+    "recall": 0.2901960784313726,
+    "precision": 0.961038961038961,
+    "f1": 0.44578313253012053,
+    "auroc": 0.6397231833910034,
+    "average_precision": 0.637153043035396
+  },
+  "bootstrap_95_carrier_ci": {
+    "accuracy": [
+      0.6098039215686275,
+      0.6647058823529411
+    ],
+    "fpr": [
+      0.0,
+      0.027450980392156862
+    ],
+    "recall": [
+      0.22745098039215686,
+      0.34509803921568627
+    ],
+    "precision": [
+      0.918918918918919,
+      1.0
+    ],
+    "f1": [
+      0.3682539682539682,
+      0.5085714285714286
+    ],
+    "auroc": [
+      0.6101268742791234,
+      0.6660130718954248
+    ],
+    "average_precision": [
+      0.6091954022988506,
+      0.6630371297455153
+    ]
+  },
+  "slices": {
+    "style": {
+      "None": {
+        "fpr": 0.011764705882352941
+      },
+      "authority_notice": {
+        "recall": 0.6285714285714286
+      },
+      "bipia_code": {
+        "recall": 0.027777777777777776
+      },
+      "agent_tool": {
+        "recall": 0.5263157894736842
+      },
+      "bipia_obfuscated": {
+        "recall": 0.0
+      },
+      "override_ops": {
+        "recall": 0.5454545454545454
+      },
+      "bipia_text": {
+        "recall": 0.0
+      },
+      "latent_task": {
+        "recall": 0.29545454545454547
+      }
+    },
+    "hiding": {
+      "None": {
+        "fpr": 0.011764705882352941
+      },
+      "none": {
+        "recall": 0.2900763358778626
+      },
+      "aria_label": {
+        "recall": 0.3
+      },
+      "html_comment": {
+        "recall": 0.25806451612903225
+      },
+      "white_on_white": {
+        "recall": 0.23529411764705882
+      },
+      "zero_font": {
+        "recall": 0.3181818181818182
+      },
+      "css_display_none": {
+        "recall": 0.3333333333333333
+      }
+    },
+    "position": {
+      "None": {
+        "fpr": 0.011764705882352941
+      },
+      "head": {
+        "recall": 0.2736842105263158
+      },
+      "tail": {
+        "recall": 0.2857142857142857
+      },
+      "middle": {
+        "recall": 0.3188405797101449
+      }
+    },
+    "kind": {
+      "table": {
+        "recall": 0.3,
+        "fpr": 0.0
+      },
+      "email": {
+        "recall": 0.3181818181818182,
+        "fpr": 0.045454545454545456
+      },
+      "web": {
+        "recall": 0.2949640287769784,
+        "fpr": 0.007194244604316547
+      },
+      "document": {
+        "recall": 0.18181818181818182,
+        "fpr": 0.0
+      }
+    },
+    "carrier_source": {
+      "BIPIA-table": {
+        "recall": 0.3,
+        "fpr": 0.0
+      },
+      "groq-qwen": {
+        "recall": 0.27419354838709675,
+        "fpr": 0.016129032258064516
+      },
+      "BIPIA-email": {
+        "recall": 0.35714285714285715,
+        "fpr": 0.0
+      },
+      "wikipedia-human": {
+        "recall": 0.2891566265060241,
+        "fpr": 0.0
+      },
+      "groq-gptoss": {
+        "recall": 0.27906976744186046,
+        "fpr": 0.046511627906976744
+      },
+      "gemini": {
+        "recall": 0.3333333333333333,
+        "fpr": 0.0
+      }
+    }
+  },
+  "tpr_at_5pct_fpr": {
+    "validation_threshold": 0.5,
+    "test_recall": 0.2901960784313726,
+    "bootstrap_95_carrier_ci": [
+      0.23137254901960785,
+      0.3411764705882353
+    ]
+  },
+  "git_commit": "4fc9dde62198080ffaca1e48596ba6d0249d3bf3",
+  "seed": 0,
+  "corpus_sha256": "3d3606ee3cc86d6560730f1cedf9143724cc5ec4030aef4931f9f267246acbef",
+  "model_sha256": "4591b3596b96f56d39d0d15033ff6b4276fe73ccc0bdcbff60a2cf3bba93a529",
+  "config_sha256": {
+    "config/detector_thresholds.json": "6f22580d1b03c641f9ad9364b3fcac01b9d713ea60f19c19868f9d32d836a098",
+    "config/heuristics.json": "b75f6b52b3c97cb2a2fe7d6d3e2ee5326de21abc2cf24978e348ca0bbc818b58",
+    "config/perplexity.json": "fbb304a845b3c9a140975e2c55647509231e1e6c3cba6c3f277ac8d506dea0b3",
+    "config/document_policy.json": "b8c0149ec3c7424a830806f6a2afa7586f8b2dec8ed06952b2dde51357a31761"
+  }
+}

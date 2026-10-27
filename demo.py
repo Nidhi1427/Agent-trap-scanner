@@ -1,8 +1,7 @@
 """Offline end-to-end research demo. Uses local files and a recording mock executor."""
 import json
 import pathlib
-from scan import load_model, prepare_text
-from train import MODEL_PATH, score_text
+from demo_app import scan_document
 from policy import load_policy, decide
 from tool_auth import MockExecutor, authorize_and_execute
 
@@ -10,19 +9,14 @@ ROOT = pathlib.Path(__file__).resolve().parent
 
 
 def run():
-    model = load_model(MODEL_PATH)
     policy = load_policy()
     examples = json.loads((ROOT / "demo/examples.json").read_text(encoding="utf-8"))
     documents = []
     for item in examples:
-        extracted = prepare_text(item["text"], item["kind"] == "html")
-        score = score_text(extracted, model["vocabulary"], model["idf"], model["weights"], model["bias"])
-        scan_label = "possible_injection" if score >= model["threshold"] else "no_match"
-        policy_result = decide(score, policy)
-        documents.append({"input": item, "scanner": {"raw_score": round(score, 4), "threshold": model["threshold"],
-            "label": scan_label, "expected_injection": item["expected_injection"],
-            "case_correct": (score >= model["threshold"]) == item["expected_injection"]}, "policy": policy_result,
-            "final_outcome": policy_result["decision"]})
+        scan = scan_document({"text":item["text"],"html":item["kind"]=="html"})
+        policy_result=scan["policy"]
+        detected=scan["ensemble_score"]>=scan["ensemble_threshold"]
+        documents.append({"input":item,"scanner":{"raw_score":scan["ensemble_score"],"threshold":scan["ensemble_threshold"],"detector_scores":scan["scores"],"label":"possible_injection" if detected else "no_match","expected_injection":item["expected_injection"],"case_correct":detected==item["expected_injection"]},"sanitization":scan["sanitization"],"agent_view":scan["agent_view"],"policy":policy_result,"final_outcome":scan["final_outcome"]})
 
     executor = MockExecutor()
     requests = json.loads((ROOT / "demo/tool_requests.json").read_text(encoding="utf-8"))
@@ -50,6 +44,8 @@ def run():
               "quarantine_semantics": "decision is recorded only; no real file is moved or deleted"}
     (ROOT / "reports").mkdir(exist_ok=True)
     (ROOT / "reports/demo_results.json").write_text(json.dumps(output, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    components={"scanner_detection":{"cases":documents,"passed":sum(d['scanner']['case_correct'] for d in documents),"total":len(documents)},"document_policy":{"cases":policy_cases,"passed":sum(c['passed'] for c in policy_cases),"total":len(policy_cases)},"tool_authorization":{"cases":auth_results,"passed":authorization_cases_passed,"total":len(auth_results),"mock_executor_calls":executor.calls},"notice":output['notice']}
+    (ROOT / "reports/component_assessments.json").write_text(json.dumps(components,indent=2,ensure_ascii=False)+"\n",encoding="utf-8")
     print(json.dumps(output, indent=2, ensure_ascii=False))
 
 

@@ -1,0 +1,114 @@
+{
+  "source": "generated transforms from a fixed demo attack; separate from frozen benchmark; not a test-set estimate",
+  "suite_size": 7,
+  "recall": {
+    "classifier_before": 0.7142857142857143,
+    "classifier_after_normalizer": 0.8571428571428571,
+    "ensemble_before": 0.7142857142857143,
+    "ensemble_after_normalizer": 0.8571428571428571
+  },
+  "cases": {
+    "spaced_letters": {
+      "label": 1,
+      "classifier_before": 0.373724751663044,
+      "classifier_after_normalizer": 0.9499016712527136,
+      "ensemble_before": 0.5549895179284515,
+      "ensemble_after_normalizer": 0.9866332961119207,
+      "threshold": 0.45187410281008106,
+      "caught": {
+        "classifier_before": true,
+        "classifier_after_normalizer": true,
+        "ensemble_before": true,
+        "ensemble_after_normalizer": true
+      }
+    },
+    "leetspeak": {
+      "label": 1,
+      "classifier_before": 0.8422773811620756,
+      "classifier_after_normalizer": 0.9845296711701924,
+      "ensemble_before": 0.9765960072387126,
+      "ensemble_after_normalizer": 0.9913232768390867,
+      "threshold": 0.45187410281008106,
+      "caught": {
+        "classifier_before": true,
+        "classifier_after_normalizer": true,
+        "ensemble_before": true,
+        "ensemble_after_normalizer": true
+      }
+    },
+    "homoglyphs": {
+      "label": 1,
+      "classifier_before": 0.22594250753998188,
+      "classifier_after_normalizer": 0.9845296711701924,
+      "ensemble_before": 0.3472054189866529,
+      "ensemble_after_normalizer": 0.9913232768390867,
+      "threshold": 0.45187410281008106,
+      "caught": {
+        "classifier_before": false,
+        "classifier_after_normalizer": true,
+        "ensemble_before": false,
+        "ensemble_after_normalizer": true
+      }
+    },
+    "zero_width": {
+      "label": 1,
+      "classifier_before": 0.9238021473158022,
+      "classifier_after_normalizer": 0.9845296711701924,
+      "ensemble_before": 0.9867237053027018,
+      "ensemble_after_normalizer": 0.9913232768390867,
+      "threshold": 0.45187410281008106,
+      "caught": {
+        "classifier_before": true,
+        "classifier_after_normalizer": true,
+        "ensemble_before": true,
+        "ensemble_after_normalizer": true
+      }
+    },
+    "base64_wrapped": {
+      "label": 1,
+      "classifier_before": 0.22594250753998188,
+      "classifier_after_normalizer": 0.22594250753998188,
+      "ensemble_before": 0.1816875428698564,
+      "ensemble_after_normalizer": 0.1816875428698564,
+      "threshold": 0.45187410281008106,
+      "caught": {
+        "classifier_before": false,
+        "classifier_after_normalizer": false,
+        "ensemble_before": false,
+        "ensemble_after_normalizer": false
+      }
+    },
+    "paraphrase": {
+      "label": 1,
+      "classifier_before": 0.4787493488479036,
+      "classifier_after_normalizer": 0.4787493488479036,
+      "ensemble_before": 0.6163412409550225,
+      "ensemble_after_normalizer": 0.6163412409550225,
+      "threshold": 0.45187410281008106,
+      "caught": {
+        "classifier_before": true,
+        "classifier_after_normalizer": true,
+        "ensemble_before": true,
+        "ensemble_after_normalizer": true
+      }
+    },
+    "two_channels": {
+      "label": 1,
+      "classifier_before": 0.9642769718574326,
+      "classifier_after_normalizer": 0.9642769718574326,
+      "ensemble_before": 0.9899987705005683,
+      "ensemble_after_normalizer": 0.9899987705005683,
+      "threshold": 0.45187410281008106,
+      "caught": {
+        "classifier_before": true,
+        "classifier_after_normalizer": true,
+        "ensemble_before": true,
+        "ensemble_after_normalizer": true
+      }
+    }
+  },
+  "remaining_misses": [
+    "base64_wrapped"
+  ],
+  "note": "Base64 payload is intentionally not decoded: decoding arbitrary payloads could introduce unrelated text and is not part of this detector."
+}

@@ -2,6 +2,7 @@
 .venv/
 **/__pycache__/
 *.py[cod]
+cache/
 
 # Temporary/editor files
 *.tmp

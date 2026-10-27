@@ -1,0 +1,6 @@
+{
+  "window_tokens": 40,
+  "backend_preference": "local-distilgpt2-then-clean-train-ngram",
+  "threshold": 0.5,
+  "note": "Fallback n-gram is trained on clean TRAIN texts only. Perplexity is a heuristic anomaly signal, not semantic injection detection."
+}

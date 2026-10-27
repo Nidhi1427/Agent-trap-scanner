@@ -1,0 +1,1859 @@
+{
+  "detector": "frozen-seed0 research evaluation",
+  "created_utc": "2026-10-27T07:16:34.785061+00:00",
+  "git_commit": "4fc9dde62198080ffaca1e48596ba6d0249d3bf3",
+  "seed": 0,
+  "corpus_sha256": "3d3606ee3cc86d6560730f1cedf9143724cc5ec4030aef4931f9f267246acbef",
+  "model_sha256": "4591b3596b96f56d39d0d15033ff6b4276fe73ccc0bdcbff60a2cf3bba93a529",
+  "ensemble_sha256": "e7587bc57c2b25fee1ed9fdc1e48223298ee1e7dfd20a726f83b3f5be9d2e0ac",
+  "config_sha256": {
+    "config/detector_thresholds.json": "6f22580d1b03c641f9ad9364b3fcac01b9d713ea60f19c19868f9d32d836a098",
+    "config/heuristics.json": "b75f6b52b3c97cb2a2fe7d6d3e2ee5326de21abc2cf24978e348ca0bbc818b58",
+    "config/perplexity.json": "fbb304a845b3c9a140975e2c55647509231e1e6c3cba6c3f277ac8d506dea0b3",
+    "config/document_policy.json": "b8c0149ec3c7424a830806f6a2afa7586f8b2dec8ed06952b2dde51357a31761"
+  },
+  "test_access": "single evaluation pass; thresholds and ensemble fit on val only",
+  "splits": {
+    "train": {
+      "0": 1190,
+      "1": 1190
+    },
+    "val": {
+      "0": 255,
+      "1": 255
+    },
+    "test": {
+      "0": 255,
+      "1": 255
+    }
+  },
+  "authorship_counts": {
+    "human": 900,
+    "llm:gemini": 23,
+    "llm:groq-gptoss": 333,
+    "llm:groq-qwen": 444
+  },
+  "source_test_slices": {
+    "human": {
+      "carriers": 147,
+      "rows": 294,
+      "fpr": 0.006802721088435374,
+      "recall": 0.7346938775510204
+    },
+    "llm:gemini": {
+      "carriers": 3,
+      "rows": 6,
+      "fpr": 0.0,
+      "recall": 1.0
+    },
+    "llm:groq-gptoss": {
+      "carriers": 43,
+      "rows": 86,
+      "fpr": 0.06976744186046512,
+      "recall": 0.7441860465116279
+    },
+    "llm:groq-qwen": {
+      "carriers": 62,
+      "rows": 124,
+      "fpr": 0.08064516129032258,
+      "recall": 0.7258064516129032
+    }
+  },
+  "llm_carrier_counts": {
+    "llm:gemini": 23,
+    "llm:groq-gptoss": 333,
+    "llm:groq-qwen": 444
+  },
+  "gemini_limitation": "Only 23 Gemini carriers total; source estimates are limited.",
+  "results": {
+    "classifier": {
+      "threshold": 0.3730677104690087,
+      "threshold_selected_on": "val",
+      "test": {
+        "n": 510,
+        "accuracy": 0.8607843137254902,
+        "fpr": 0.054901960784313725,
+        "recall": 0.7764705882352941,
+        "precision": 0.9339622641509434,
+        "f1": 0.8479657387580299,
+        "auroc": 0.9353940792003076,
+        "average_precision": 0.9490057156787306
+      },
+      "bootstrap_95_carrier_ci": {
+        "accuracy": [
+          0.8274509803921568,
+          0.8901960784313725
+        ],
+        "fpr": [
+          0.03137254901960784,
+          0.08627450980392157
+        ],
+        "recall": [
+          0.7176470588235294,
+          0.8274509803921568
+        ],
+        "precision": [
+          0.8995433789954338,
+          0.961352657004831
+        ],
+        "f1": [
+          0.8078602620087336,
+          0.8818565400843883
+        ],
+        "auroc": [
+          0.914878892733564,
+          0.9534948096885814
+        ],
+        "average_precision": [
+          0.9339651298742245,
+          0.9622023659880025
+        ]
+      },
+      "slices": {
+        "style": {
+          "None": {
+            "fpr": 0.054901960784313725
+          },
+          "authority_notice": {
+            "recall": 0.8571428571428571
+          },
+          "bipia_code": {
+            "recall": 1.0
+          },
+          "agent_tool": {
+            "recall": 1.0
+          },
+          "bipia_obfuscated": {
+            "recall": 0.22857142857142856
+          },
+          "override_ops": {
+            "recall": 1.0
+          },
+          "bipia_text": {
+            "recall": 0.29411764705882354
+          },
+          "latent_task": {
+            "recall": 0.9772727272727273
+          }
+        },
+        "hiding": {
+          "None": {
+            "fpr": 0.054901960784313725
+          },
+          "none": {
+            "recall": 0.816793893129771
+          },
+          "aria_label": {
+            "recall": 0.6666666666666666
+          },
+          "html_comment": {
+            "recall": 0.7096774193548387
+          },
+          "white_on_white": {
+            "recall": 0.7058823529411765
+          },
+          "zero_font": {
+            "recall": 0.8181818181818182
+          },
+          "css_display_none": {
+            "recall": 0.7916666666666666
+          }
+        },
+        "position": {
+          "None": {
+            "fpr": 0.054901960784313725
+          },
+          "head": {
+            "recall": 0.7368421052631579
+          },
+          "tail": {
+            "recall": 0.7692307692307693
+          },
+          "middle": {
+            "recall": 0.8405797101449275
+          }
+        },
+        "kind": {
+          "table": {
+            "recall": 0.76,
+            "fpr": 0.0
+          },
+          "email": {
+            "recall": 0.8636363636363636,
+            "fpr": 0.18181818181818182
+          },
+          "web": {
+            "recall": 0.7553956834532374,
+            "fpr": 0.04316546762589928
+          },
+          "document": {
+            "recall": 0.7727272727272727,
+            "fpr": 0.0
+          }
+        },
+        "carrier_source": {
+          "BIPIA-table": {
+            "recall": 0.76,
+            "fpr": 0.0
+          },
+          "groq-qwen": {
+            "recall": 0.7903225806451613,
+            "fpr": 0.0967741935483871
+          },
+          "BIPIA-email": {
+            "recall": 0.7142857142857143,
+            "fpr": 0.0
+          },
+          "wikipedia-human": {
+            "recall": 0.7710843373493976,
+            "fpr": 0.04819277108433735
+          },
+          "groq-gptoss": {
+            "recall": 0.7906976744186046,
+            "fpr": 0.09302325581395349
+          },
+          "gemini": {
+            "recall": 1.0,
+            "fpr": 0.0
+          }
+        }
+      },
+      "tpr_at_5pct_fpr": {
+        "validation_threshold": 0.3859598851093551,
+        "test_recall": 0.7490196078431373,
+        "bootstrap_95_carrier_ci": [
+          0.6901960784313725,
+          0.796078431372549
+        ]
+      }
+    },
+    "heuristics": {
+      "threshold": 0.22635838150289017,
+      "threshold_selected_on": "val",
+      "test": {
+        "n": 510,
+        "accuracy": 0.592156862745098,
+        "fpr": 0.03137254901960784,
+        "recall": 0.21568627450980393,
+        "precision": 0.873015873015873,
+        "f1": 0.34591194968553457,
+        "auroc": 0.6324644367550942,
+        "average_precision": 0.6444508492763086
+      },
+      "bootstrap_95_carrier_ci": {
+        "accuracy": [
+          0.5686274509803921,
+          0.6176470588235294
+        ],
+        "fpr": [
+          0.011764705882352941,
+          0.050980392156862744
+        ],
+        "recall": [
+          0.1607843137254902,
+          0.27058823529411763
+        ],
+        "precision": [
+          0.8115942028985508,
+          0.9464285714285714
+        ],
+        "f1": [
+          0.2751677852348993,
+          0.41194029850746267
+        ],
+        "auroc": [
+          0.6064436755094195,
+          0.662083813917724
+        ],
+        "average_precision": [
+          0.6186302284295293,
+          0.6729901437075305
+        ]
+      },
+      "slices": {
+        "style": {
+          "None": {
+            "fpr": 0.03137254901960784
+          },
+          "authority_notice": {
+            "recall": 0.05714285714285714
+          },
+          "bipia_code": {
+            "recall": 0.027777777777777776
+          },
+          "agent_tool": {
+            "recall": 0.6052631578947368
+          },
+          "bipia_obfuscated": {
+            "recall": 0.11428571428571428
+          },
+          "override_ops": {
+            "recall": 0.5454545454545454
+          },
+          "bipia_text": {
+            "recall": 0.08823529411764706
+          },
+          "latent_task": {
+            "recall": 0.09090909090909091
+          }
+        },
+        "hiding": {
+          "None": {
+            "fpr": 0.03137254901960784
+          },
+          "none": {
+            "recall": 0.21374045801526717
+          },
+          "aria_label": {
+            "recall": 0.16666666666666666
+          },
+          "html_comment": {
+            "recall": 0.1935483870967742
+          },
+          "white_on_white": {
+            "recall": 0.29411764705882354
+          },
+          "zero_font": {
+            "recall": 0.18181818181818182
+          },
+          "css_display_none": {
+            "recall": 0.2916666666666667
+          }
+        },
+        "position": {
+          "None": {
+            "fpr": 0.03137254901960784
+          },
+          "head": {
+            "recall": 0.2631578947368421
+          },
+          "tail": {
+            "recall": 0.18681318681318682
+          },
+          "middle": {
+            "recall": 0.18840579710144928
+          }
+        },
+        "kind": {
+          "table": {
+            "recall": 0.18,
+            "fpr": 0.06
+          },
+          "email": {
+            "recall": 0.3181818181818182,
+            "fpr": 0.022727272727272728
+          },
+          "web": {
+            "recall": 0.22302158273381295,
+            "fpr": 0.02877697841726619
+          },
+          "document": {
+            "recall": 0.045454545454545456,
+            "fpr": 0.0
+          }
+        },
+        "carrier_source": {
+          "BIPIA-table": {
+            "recall": 0.18,
+            "fpr": 0.06
+          },
+          "groq-qwen": {
+            "recall": 0.24193548387096775,
+            "fpr": 0.04838709677419355
+          },
+          "BIPIA-email": {
+            "recall": 0.2857142857142857,
+            "fpr": 0.0
+          },
+          "wikipedia-human": {
+            "recall": 0.20481927710843373,
+            "fpr": 0.012048192771084338
+          },
+          "groq-gptoss": {
+            "recall": 0.23255813953488372,
+            "fpr": 0.023255813953488372
+          },
+          "gemini": {
+            "recall": 0.0,
+            "fpr": 0.0
+          }
+        }
+      },
+      "tpr_at_5pct_fpr": {
+        "validation_threshold": 0.22956521739130434,
+        "test_recall": 0.1803921568627451,
+        "bootstrap_95_carrier_ci": [
+          0.13333333333333333,
+          0.2235294117647059
+        ]
+      }
+    },
+    "perplexity": {
+      "threshold": 0.29070643246741296,
+      "threshold_selected_on": "val",
+      "test": {
+        "n": 510,
+        "accuracy": 0.5372549019607843,
+        "fpr": 0.06274509803921569,
+        "recall": 0.13725490196078433,
+        "precision": 0.6862745098039216,
+        "f1": 0.22875816993464057,
+        "auroc": 0.5267589388696655,
+        "average_precision": 0.5685555417822596
+      },
+      "bootstrap_95_carrier_ci": {
+        "accuracy": [
+          0.5196078431372549,
+          0.5549019607843138
+        ],
+        "fpr": [
+          0.0392156862745098,
+          0.09411764705882353
+        ],
+        "recall": [
+          0.10196078431372549,
+          0.17647058823529413
+        ],
+        "precision": [
+          0.5952380952380952,
+          0.7857142857142857
+        ],
+        "f1": [
+          0.17391304347826086,
+          0.28301886792452835
+        ],
+        "auroc": [
+          0.506082276047674,
+          0.5478200692041523
+        ],
+        "average_precision": [
+          0.5430734145170215,
+          0.5966193511827329
+        ]
+      },
+      "slices": {
+        "style": {
+          "None": {
+            "fpr": 0.06274509803921569
+          },
+          "authority_notice": {
+            "recall": 0.11428571428571428
+          },
+          "bipia_code": {
+            "recall": 0.25
+          },
+          "agent_tool": {
+            "recall": 0.15789473684210525
+          },
+          "bipia_obfuscated": {
+            "recall": 0.05714285714285714
+          },
+          "override_ops": {
+            "recall": 0.24242424242424243
+          },
+          "bipia_text": {
+            "recall": 0.058823529411764705
+          },
+          "latent_task": {
+            "recall": 0.09090909090909091
+          }
+        },
+        "hiding": {
+          "None": {
+            "fpr": 0.06274509803921569
+          },
+          "none": {
+            "recall": 0.21374045801526717
+          },
+          "aria_label": {
+            "recall": 0.06666666666666667
+          },
+          "html_comment": {
+            "recall": 0.0967741935483871
+          },
+          "white_on_white": {
+            "recall": 0.058823529411764705
+          },
+          "zero_font": {
+            "recall": 0.0
+          },
+          "css_display_none": {
+            "recall": 0.041666666666666664
+          }
+        },
+        "position": {
+          "None": {
+            "fpr": 0.06274509803921569
+          },
+          "head": {
+            "recall": 0.08421052631578947
+          },
+          "tail": {
+            "recall": 0.25274725274725274
+          },
+          "middle": {
+            "recall": 0.057971014492753624
+          }
+        },
+        "kind": {
+          "table": {
+            "recall": 0.12,
+            "fpr": 0.02
+          },
+          "email": {
+            "recall": 0.4318181818181818,
+            "fpr": 0.20454545454545456
+          },
+          "web": {
+            "recall": 0.050359712230215826,
+            "fpr": 0.04316546762589928
+          },
+          "document": {
+            "recall": 0.13636363636363635,
+            "fpr": 0.0
+          }
+        },
+        "carrier_source": {
+          "BIPIA-table": {
+            "recall": 0.12,
+            "fpr": 0.02
+          },
+          "groq-qwen": {
+            "recall": 0.1935483870967742,
+            "fpr": 0.0967741935483871
+          },
+          "BIPIA-email": {
+            "recall": 0.7857142857142857,
+            "fpr": 0.2857142857142857
+          },
+          "wikipedia-human": {
+            "recall": 0.0,
+            "fpr": 0.012048192771084338
+          },
+          "groq-gptoss": {
+            "recall": 0.13953488372093023,
+            "fpr": 0.09302325581395349
+          },
+          "gemini": {
+            "recall": 0.0,
+            "fpr": 0.0
+          }
+        }
+      },
+      "tpr_at_5pct_fpr": {
+        "validation_threshold": 0.30741681795886816,
+        "test_recall": 0.10588235294117647,
+        "bootstrap_95_carrier_ci": [
+          0.07450980392156863,
+          0.1411764705882353
+        ]
+      }
+    },
+    "keyword": {
+      "threshold": 0.5,
+      "threshold_selected_on": "val",
+      "test": {
+        "n": 510,
+        "accuracy": 0.6392156862745098,
+        "fpr": 0.011764705882352941,
+        "recall": 0.2901960784313726,
+        "precision": 0.961038961038961,
+        "f1": 0.44578313253012053,
+        "auroc": 0.6397231833910034,
+        "average_precision": 0.637153043035396
+      },
+      "bootstrap_95_carrier_ci": {
+        "accuracy": [
+          0.6098039215686275,
+          0.6647058823529411
+        ],
+        "fpr": [
+          0.0,
+          0.027450980392156862
+        ],
+        "recall": [
+          0.22745098039215686,
+          0.34509803921568627
+        ],
+        "precision": [
+          0.918918918918919,
+          1.0
+        ],
+        "f1": [
+          0.3682539682539682,
+          0.5085714285714286
+        ],
+        "auroc": [
+          0.6101268742791234,
+          0.6660130718954248
+        ],
+        "average_precision": [
+          0.6091954022988506,
+          0.6630371297455153
+        ]
+      },
+      "slices": {
+        "style": {
+          "None": {
+            "fpr": 0.011764705882352941
+          },
+          "authority_notice": {
+            "recall": 0.6285714285714286
+          },
+          "bipia_code": {
+            "recall": 0.027777777777777776
+          },
+          "agent_tool": {
+            "recall": 0.5263157894736842
+          },
+          "bipia_obfuscated": {
+            "recall": 0.0
+          },
+          "override_ops": {
+            "recall": 0.5454545454545454
+          },
+          "bipia_text": {
+            "recall": 0.0
+          },
+          "latent_task": {
+            "recall": 0.29545454545454547
+          }
+        },
+        "hiding": {
+          "None": {
+            "fpr": 0.011764705882352941
+          },
+          "none": {
+            "recall": 0.2900763358778626
+          },
+          "aria_label": {
+            "recall": 0.3
+          },
+          "html_comment": {
+            "recall": 0.25806451612903225
+          },
+          "white_on_white": {
+            "recall": 0.23529411764705882
+          },
+          "zero_font": {
+            "recall": 0.3181818181818182
+          },
+          "css_display_none": {
+            "recall": 0.3333333333333333
+          }
+        },
+        "position": {
+          "None": {
+            "fpr": 0.011764705882352941
+          },
+          "head": {
+            "recall": 0.2736842105263158
+          },
+          "tail": {
+            "recall": 0.2857142857142857
+          },
+          "middle": {
+            "recall": 0.3188405797101449
+          }
+        },
+        "kind": {
+          "table": {
+            "recall": 0.3,
+            "fpr": 0.0
+          },
+          "email": {
+            "recall": 0.3181818181818182,
+            "fpr": 0.045454545454545456
+          },
+          "web": {
+            "recall": 0.2949640287769784,
+            "fpr": 0.007194244604316547
+          },
+          "document": {
+            "recall": 0.18181818181818182,
+            "fpr": 0.0
+          }
+        },
+        "carrier_source": {
+          "BIPIA-table": {
+            "recall": 0.3,
+            "fpr": 0.0
+          },
+          "groq-qwen": {
+            "recall": 0.27419354838709675,
+            "fpr": 0.016129032258064516
+          },
+          "BIPIA-email": {
+            "recall": 0.35714285714285715,
+            "fpr": 0.0
+          },
+          "wikipedia-human": {
+            "recall": 0.2891566265060241,
+            "fpr": 0.0
+          },
+          "groq-gptoss": {
+            "recall": 0.27906976744186046,
+            "fpr": 0.046511627906976744
+          },
+          "gemini": {
+            "recall": 0.3333333333333333,
+            "fpr": 0.0
+          }
+        }
+      },
+      "tpr_at_5pct_fpr": {
+        "validation_threshold": 0.5,
+        "test_recall": 0.2901960784313726,
+        "bootstrap_95_carrier_ci": [
+          0.23137254901960785,
+          0.3411764705882353
+        ]
+      }
+    },
+    "classifier+heuristics": {
+      "threshold": 0.3730677104690087,
+      "threshold_selected_on": "val",
+      "test": {
+        "n": 510,
+        "accuracy": 0.8607843137254902,
+        "fpr": 0.054901960784313725,
+        "recall": 0.7764705882352941,
+        "precision": 0.9339622641509434,
+        "f1": 0.8479657387580299,
+        "auroc": 0.935763168012303,
+        "average_precision": 0.9490921396134031
+      },
+      "bootstrap_95_carrier_ci": {
+        "accuracy": [
+          0.8274509803921568,
+          0.8901960784313725
+        ],
+        "fpr": [
+          0.03137254901960784,
+          0.08627450980392157
+        ],
+        "recall": [
+          0.7176470588235294,
+          0.8274509803921568
+        ],
+        "precision": [
+          0.8995433789954338,
+          0.961352657004831
+        ],
+        "f1": [
+          0.8078602620087336,
+          0.8818565400843883
+        ],
+        "auroc": [
+          0.9161860822760477,
+          0.9536639753940792
+        ],
+        "average_precision": [
+          0.9338064658647799,
+          0.9617277109897076
+        ]
+      },
+      "slices": {
+        "style": {
+          "None": {
+            "fpr": 0.054901960784313725
+          },
+          "authority_notice": {
+            "recall": 0.8571428571428571
+          },
+          "bipia_code": {
+            "recall": 1.0
+          },
+          "agent_tool": {
+            "recall": 1.0
+          },
+          "bipia_obfuscated": {
+            "recall": 0.22857142857142856
+          },
+          "override_ops": {
+            "recall": 1.0
+          },
+          "bipia_text": {
+            "recall": 0.29411764705882354
+          },
+          "latent_task": {
+            "recall": 0.9772727272727273
+          }
+        },
+        "hiding": {
+          "None": {
+            "fpr": 0.054901960784313725
+          },
+          "none": {
+            "recall": 0.816793893129771
+          },
+          "aria_label": {
+            "recall": 0.6666666666666666
+          },
+          "html_comment": {
+            "recall": 0.7096774193548387
+          },
+          "white_on_white": {
+            "recall": 0.7058823529411765
+          },
+          "zero_font": {
+            "recall": 0.8181818181818182
+          },
+          "css_display_none": {
+            "recall": 0.7916666666666666
+          }
+        },
+        "position": {
+          "None": {
+            "fpr": 0.054901960784313725
+          },
+          "head": {
+            "recall": 0.7368421052631579
+          },
+          "tail": {
+            "recall": 0.7692307692307693
+          },
+          "middle": {
+            "recall": 0.8405797101449275
+          }
+        },
+        "kind": {
+          "table": {
+            "recall": 0.76,
+            "fpr": 0.0
+          },
+          "email": {
+            "recall": 0.8636363636363636,
+            "fpr": 0.18181818181818182
+          },
+          "web": {
+            "recall": 0.7553956834532374,
+            "fpr": 0.04316546762589928
+          },
+          "document": {
+            "recall": 0.7727272727272727,
+            "fpr": 0.0
+          }
+        },
+        "carrier_source": {
+          "BIPIA-table": {
+            "recall": 0.76,
+            "fpr": 0.0
+          },
+          "groq-qwen": {
+            "recall": 0.7903225806451613,
+            "fpr": 0.0967741935483871
+          },
+          "BIPIA-email": {
+            "recall": 0.7142857142857143,
+            "fpr": 0.0
+          },
+          "wikipedia-human": {
+            "recall": 0.7710843373493976,
+            "fpr": 0.04819277108433735
+          },
+          "groq-gptoss": {
+            "recall": 0.7906976744186046,
+            "fpr": 0.09302325581395349
+          },
+          "gemini": {
+            "recall": 1.0,
+            "fpr": 0.0
+          }
+        }
+      },
+      "tpr_at_5pct_fpr": {
+        "validation_threshold": 0.3997653383615892,
+        "test_recall": 0.7411764705882353,
+        "bootstrap_95_carrier_ci": [
+          0.6862745098039216,
+          0.792156862745098
+        ]
+      }
+    },
+    "classifier+perplexity": {
+      "threshold": 0.3997653383615892,
+      "threshold_selected_on": "val",
+      "test": {
+        "n": 510,
+        "accuracy": 0.8490196078431372,
+        "fpr": 0.050980392156862744,
+        "recall": 0.7490196078431373,
+        "precision": 0.9362745098039216,
+        "f1": 0.832244008714597,
+        "auroc": 0.9300422914263745,
+        "average_precision": 0.9457683655372071
+      },
+      "bootstrap_95_carrier_ci": {
+        "accuracy": [
+          0.8156862745098039,
+          0.8745098039215686
+        ],
+        "fpr": [
+          0.027450980392156862,
+          0.08235294117647059
+        ],
+        "recall": [
+          0.6862745098039216,
+          0.796078431372549
+        ],
+        "precision": [
+          0.9009433962264151,
+          0.9641025641025641
+        ],
+        "f1": [
+          0.7873303167420815,
+          0.8633405639913232
+        ],
+        "auroc": [
+          0.910326797385621,
+          0.9483121876201461
+        ],
+        "average_precision": [
+          0.9303879991818823,
+          0.9590795065451978
+        ]
+      },
+      "slices": {
+        "style": {
+          "None": {
+            "fpr": 0.050980392156862744
+          },
+          "authority_notice": {
+            "recall": 0.8
+          },
+          "bipia_code": {
+            "recall": 1.0
+          },
+          "agent_tool": {
+            "recall": 1.0
+          },
+          "bipia_obfuscated": {
+            "recall": 0.14285714285714285
+          },
+          "override_ops": {
+            "recall": 1.0
+          },
+          "bipia_text": {
+            "recall": 0.23529411764705882
+          },
+          "latent_task": {
+            "recall": 0.9772727272727273
+          }
+        },
+        "hiding": {
+          "None": {
+            "fpr": 0.050980392156862744
+          },
+          "none": {
+            "recall": 0.7862595419847328
+          },
+          "aria_label": {
+            "recall": 0.6666666666666666
+          },
+          "html_comment": {
+            "recall": 0.6774193548387096
+          },
+          "white_on_white": {
+            "recall": 0.6470588235294118
+          },
+          "zero_font": {
+            "recall": 0.8181818181818182
+          },
+          "css_display_none": {
+            "recall": 0.75
+          }
+        },
+        "position": {
+          "None": {
+            "fpr": 0.050980392156862744
+          },
+          "head": {
+            "recall": 0.7052631578947368
+          },
+          "tail": {
+            "recall": 0.7362637362637363
+          },
+          "middle": {
+            "recall": 0.8260869565217391
+          }
+        },
+        "kind": {
+          "table": {
+            "recall": 0.76,
+            "fpr": 0.02
+          },
+          "email": {
+            "recall": 0.8636363636363636,
+            "fpr": 0.20454545454545456
+          },
+          "web": {
+            "recall": 0.7194244604316546,
+            "fpr": 0.02158273381294964
+          },
+          "document": {
+            "recall": 0.6818181818181818,
+            "fpr": 0.0
+          }
+        },
+        "carrier_source": {
+          "BIPIA-table": {
+            "recall": 0.76,
+            "fpr": 0.02
+          },
+          "groq-qwen": {
+            "recall": 0.7258064516129032,
+            "fpr": 0.11290322580645161
+          },
+          "BIPIA-email": {
+            "recall": 0.7857142857142857,
+            "fpr": 0.0
+          },
+          "wikipedia-human": {
+            "recall": 0.7349397590361446,
+            "fpr": 0.024096385542168676
+          },
+          "groq-gptoss": {
+            "recall": 0.7674418604651163,
+            "fpr": 0.06976744186046512
+          },
+          "gemini": {
+            "recall": 1.0,
+            "fpr": 0.0
+          }
+        }
+      },
+      "tpr_at_5pct_fpr": {
+        "validation_threshold": 0.3997653383615892,
+        "test_recall": 0.7490196078431373,
+        "bootstrap_95_carrier_ci": [
+          0.6901960784313725,
+          0.8
+        ]
+      }
+    },
+    "heuristics+perplexity": {
+      "threshold": 0.29070643246741296,
+      "threshold_selected_on": "val",
+      "test": {
+        "n": 510,
+        "accuracy": 0.6019607843137255,
+        "fpr": 0.06274509803921569,
+        "recall": 0.26666666666666666,
+        "precision": 0.8095238095238095,
+        "f1": 0.4011799410029499,
+        "auroc": 0.614725105728566,
+        "average_precision": 0.6800672419941766
+      },
+      "bootstrap_95_carrier_ci": {
+        "accuracy": [
+          0.5745098039215686,
+          0.6274509803921569
+        ],
+        "fpr": [
+          0.0392156862745098,
+          0.09411764705882353
+        ],
+        "recall": [
+          0.21568627450980393,
+          0.3176470588235294
+        ],
+        "precision": [
+          0.735632183908046,
+          0.8795180722891566
+        ],
+        "f1": [
+          0.3364485981308411,
+          0.4619718309859155
+        ],
+        "auroc": [
+          0.5838985005767012,
+          0.6446443675509419
+        ],
+        "average_precision": [
+          0.6463401237875902,
+          0.7094278494938095
+        ]
+      },
+      "slices": {
+        "style": {
+          "None": {
+            "fpr": 0.06274509803921569
+          },
+          "authority_notice": {
+            "recall": 0.14285714285714285
+          },
+          "bipia_code": {
+            "recall": 0.25
+          },
+          "agent_tool": {
+            "recall": 0.6052631578947368
+          },
+          "bipia_obfuscated": {
+            "recall": 0.08571428571428572
+          },
+          "override_ops": {
+            "recall": 0.6060606060606061
+          },
+          "bipia_text": {
+            "recall": 0.058823529411764705
+          },
+          "latent_task": {
+            "recall": 0.13636363636363635
+          }
+        },
+        "hiding": {
+          "None": {
+            "fpr": 0.06274509803921569
+          },
+          "none": {
+            "recall": 0.32061068702290074
+          },
+          "aria_label": {
+            "recall": 0.2
+          },
+          "html_comment": {
+            "recall": 0.1935483870967742
+          },
+          "white_on_white": {
+            "recall": 0.23529411764705882
+          },
+          "zero_font": {
+            "recall": 0.18181818181818182
+          },
+          "css_display_none": {
+            "recall": 0.25
+          }
+        },
+        "position": {
+          "None": {
+            "fpr": 0.06274509803921569
+          },
+          "head": {
+            "recall": 0.25263157894736843
+          },
+          "tail": {
+            "recall": 0.34065934065934067
+          },
+          "middle": {
+            "recall": 0.18840579710144928
+          }
+        },
+        "kind": {
+          "table": {
+            "recall": 0.24,
+            "fpr": 0.02
+          },
+          "email": {
+            "recall": 0.5454545454545454,
+            "fpr": 0.20454545454545456
+          },
+          "web": {
+            "recall": 0.20863309352517986,
+            "fpr": 0.04316546762589928
+          },
+          "document": {
+            "recall": 0.13636363636363635,
+            "fpr": 0.0
+          }
+        },
+        "carrier_source": {
+          "BIPIA-table": {
+            "recall": 0.24,
+            "fpr": 0.02
+          },
+          "groq-qwen": {
+            "recall": 0.3064516129032258,
+            "fpr": 0.0967741935483871
+          },
+          "BIPIA-email": {
+            "recall": 0.7857142857142857,
+            "fpr": 0.2857142857142857
+          },
+          "wikipedia-human": {
+            "recall": 0.1927710843373494,
+            "fpr": 0.012048192771084338
+          },
+          "groq-gptoss": {
+            "recall": 0.23255813953488372,
+            "fpr": 0.09302325581395349
+          },
+          "gemini": {
+            "recall": 0.0,
+            "fpr": 0.0
+          }
+        }
+      },
+      "tpr_at_5pct_fpr": {
+        "validation_threshold": 0.3141477271116826,
+        "test_recall": 0.24705882352941178,
+        "bootstrap_95_carrier_ci": [
+          0.19607843137254902,
+          0.29411764705882354
+        ]
+      }
+    },
+    "all_three": {
+      "threshold": 0.3997653383615892,
+      "threshold_selected_on": "val",
+      "test": {
+        "n": 510,
+        "accuracy": 0.8490196078431372,
+        "fpr": 0.050980392156862744,
+        "recall": 0.7490196078431373,
+        "precision": 0.9362745098039216,
+        "f1": 0.832244008714597,
+        "auroc": 0.9304882737408688,
+        "average_precision": 0.9458750687522818
+      },
+      "bootstrap_95_carrier_ci": {
+        "accuracy": [
+          0.8156862745098039,
+          0.8745098039215686
+        ],
+        "fpr": [
+          0.027450980392156862,
+          0.08235294117647059
+        ],
+        "recall": [
+          0.6862745098039216,
+          0.796078431372549
+        ],
+        "precision": [
+          0.9009433962264151,
+          0.9641025641025641
+        ],
+        "f1": [
+          0.7873303167420815,
+          0.8633405639913232
+        ],
+        "auroc": [
+          0.9107881584006151,
+          0.9483121876201461
+        ],
+        "average_precision": [
+          0.9303750417091127,
+          0.9590795065451978
+        ]
+      },
+      "slices": {
+        "style": {
+          "None": {
+            "fpr": 0.050980392156862744
+          },
+          "authority_notice": {
+            "recall": 0.8
+          },
+          "bipia_code": {
+            "recall": 1.0
+          },
+          "agent_tool": {
+            "recall": 1.0
+          },
+          "bipia_obfuscated": {
+            "recall": 0.14285714285714285
+          },
+          "override_ops": {
+            "recall": 1.0
+          },
+          "bipia_text": {
+            "recall": 0.23529411764705882
+          },
+          "latent_task": {
+            "recall": 0.9772727272727273
+          }
+        },
+        "hiding": {
+          "None": {
+            "fpr": 0.050980392156862744
+          },
+          "none": {
+            "recall": 0.7862595419847328
+          },
+          "aria_label": {
+            "recall": 0.6666666666666666
+          },
+          "html_comment": {
+            "recall": 0.6774193548387096
+          },
+          "white_on_white": {
+            "recall": 0.6470588235294118
+          },
+          "zero_font": {
+            "recall": 0.8181818181818182
+          },
+          "css_display_none": {
+            "recall": 0.75
+          }
+        },
+        "position": {
+          "None": {
+            "fpr": 0.050980392156862744
+          },
+          "head": {
+            "recall": 0.7052631578947368
+          },
+          "tail": {
+            "recall": 0.7362637362637363
+          },
+          "middle": {
+            "recall": 0.8260869565217391
+          }
+        },
+        "kind": {
+          "table": {
+            "recall": 0.76,
+            "fpr": 0.02
+          },
+          "email": {
+            "recall": 0.8636363636363636,
+            "fpr": 0.20454545454545456
+          },
+          "web": {
+            "recall": 0.7194244604316546,
+            "fpr": 0.02158273381294964
+          },
+          "document": {
+            "recall": 0.6818181818181818,
+            "fpr": 0.0
+          }
+        },
+        "carrier_source": {
+          "BIPIA-table": {
+            "recall": 0.76,
+            "fpr": 0.02
+          },
+          "groq-qwen": {
+            "recall": 0.7258064516129032,
+            "fpr": 0.11290322580645161
+          },
+          "BIPIA-email": {
+            "recall": 0.7857142857142857,
+            "fpr": 0.0
+          },
+          "wikipedia-human": {
+            "recall": 0.7349397590361446,
+            "fpr": 0.024096385542168676
+          },
+          "groq-gptoss": {
+            "recall": 0.7674418604651163,
+            "fpr": 0.06976744186046512
+          },
+          "gemini": {
+            "recall": 1.0,
+            "fpr": 0.0
+          }
+        }
+      },
+      "tpr_at_5pct_fpr": {
+        "validation_threshold": 0.41470752060040306,
+        "test_recall": 0.7450980392156863,
+        "bootstrap_95_carrier_ci": [
+          0.6823529411764706,
+          0.796078431372549
+        ]
+      }
+    },
+    "ensemble": {
+      "threshold": 0.45187410281008106,
+      "threshold_selected_on": "val",
+      "test": {
+        "n": 510,
+        "accuracy": 0.8509803921568627,
+        "fpr": 0.03529411764705882,
+        "recall": 0.7372549019607844,
+        "precision": 0.9543147208121827,
+        "f1": 0.831858407079646,
+        "auroc": 0.9353633217993079,
+        "average_precision": 0.9486021317677166
+      },
+      "bootstrap_95_carrier_ci": {
+        "accuracy": [
+          0.8176470588235294,
+          0.8784313725490196
+        ],
+        "fpr": [
+          0.01568627450980392,
+          0.058823529411764705
+        ],
+        "recall": [
+          0.6745098039215687,
+          0.788235294117647
+        ],
+        "precision": [
+          0.9242424242424242,
+          0.9789473684210527
+        ],
+        "f1": [
+          0.7873303167420815,
+          0.8646288209606988
+        ],
+        "auroc": [
+          0.9146789696270665,
+          0.9539100346020761
+        ],
+        "average_precision": [
+          0.932723158263031,
+          0.9621906640666092
+        ]
+      },
+      "slices": {
+        "style": {
+          "None": {
+            "fpr": 0.03529411764705882
+          },
+          "authority_notice": {
+            "recall": 0.7714285714285715
+          },
+          "bipia_code": {
+            "recall": 0.9722222222222222
+          },
+          "agent_tool": {
+            "recall": 1.0
+          },
+          "bipia_obfuscated": {
+            "recall": 0.11428571428571428
+          },
+          "override_ops": {
+            "recall": 1.0
+          },
+          "bipia_text": {
+            "recall": 0.23529411764705882
+          },
+          "latent_task": {
+            "recall": 0.9772727272727273
+          }
+        },
+        "hiding": {
+          "None": {
+            "fpr": 0.03529411764705882
+          },
+          "none": {
+            "recall": 0.7709923664122137
+          },
+          "aria_label": {
+            "recall": 0.6666666666666666
+          },
+          "html_comment": {
+            "recall": 0.6451612903225806
+          },
+          "white_on_white": {
+            "recall": 0.6470588235294118
+          },
+          "zero_font": {
+            "recall": 0.8181818181818182
+          },
+          "css_display_none": {
+            "recall": 0.75
+          }
+        },
+        "position": {
+          "None": {
+            "fpr": 0.03529411764705882
+          },
+          "head": {
+            "recall": 0.7052631578947368
+          },
+          "tail": {
+            "recall": 0.7032967032967034
+          },
+          "middle": {
+            "recall": 0.8260869565217391
+          }
+        },
+        "kind": {
+          "table": {
+            "recall": 0.74,
+            "fpr": 0.0
+          },
+          "email": {
+            "recall": 0.8409090909090909,
+            "fpr": 0.1590909090909091
+          },
+          "web": {
+            "recall": 0.7122302158273381,
+            "fpr": 0.014388489208633094
+          },
+          "document": {
+            "recall": 0.6818181818181818,
+            "fpr": 0.0
+          }
+        },
+        "carrier_source": {
+          "BIPIA-table": {
+            "recall": 0.74,
+            "fpr": 0.0
+          },
+          "groq-qwen": {
+            "recall": 0.7258064516129032,
+            "fpr": 0.08064516129032258
+          },
+          "BIPIA-email": {
+            "recall": 0.7142857142857143,
+            "fpr": 0.0
+          },
+          "wikipedia-human": {
+            "recall": 0.7349397590361446,
+            "fpr": 0.012048192771084338
+          },
+          "groq-gptoss": {
+            "recall": 0.7441860465116279,
+            "fpr": 0.06976744186046512
+          },
+          "gemini": {
+            "recall": 1.0,
+            "fpr": 0.0
+          }
+        }
+      },
+      "tpr_at_5pct_fpr": {
+        "validation_threshold": 0.45187410281008106,
+        "test_recall": 0.7372549019607844,
+        "bootstrap_95_carrier_ci": [
+          0.6745098039215687,
+          0.788235294117647
+        ]
+      }
+    }
+  },
+  "removal_quality": {
+    "injected_string_removal_fraction": 0.9254901960784314,
+    "injected_rows": 255,
+    "injected_strings_removed": 236,
+    "clean_character_false_removal_fraction": 0.03389721259346263,
+    "clean_chars_removed_estimate": 18932,
+    "clean_chars_total": 558512,
+    "residual_score_mean": 0.24945490196078413,
+    "method": "exact injection string absence; clean char removal estimated from returned removed spans; diagnostic only"
+  },
+  "evasion": {
+    "source": "generated transforms from a fixed demo attack; separate from frozen benchmark; not a test-set estimate",
+    "suite_size": 7,
+    "recall": {
+      "classifier_before": 0.7142857142857143,
+      "classifier_after_normalizer": 0.8571428571428571,
+      "ensemble_before": 0.7142857142857143,
+      "ensemble_after_normalizer": 0.8571428571428571
+    },
+    "cases": {
+      "spaced_letters": {
+        "label": 1,
+        "classifier_before": 0.373724751663044,
+        "classifier_after_normalizer": 0.9499016712527136,
+        "ensemble_before": 0.5549895179284515,
+        "ensemble_after_normalizer": 0.9866332961119207,
+        "threshold": 0.45187410281008106,
+        "caught": {
+          "classifier_before": true,
+          "classifier_after_normalizer": true,
+          "ensemble_before": true,
+          "ensemble_after_normalizer": true
+        }
+      },
+      "leetspeak": {
+        "label": 1,
+        "classifier_before": 0.8422773811620756,
+        "classifier_after_normalizer": 0.9845296711701924,
+        "ensemble_before": 0.9765960072387126,
+        "ensemble_after_normalizer": 0.9913232768390867,
+        "threshold": 0.45187410281008106,
+        "caught": {
+          "classifier_before": true,
+          "classifier_after_normalizer": true,
+          "ensemble_before": true,
+          "ensemble_after_normalizer": true
+        }
+      },
+      "homoglyphs": {
+        "label": 1,
+        "classifier_before": 0.22594250753998188,
+        "classifier_after_normalizer": 0.9845296711701924,
+        "ensemble_before": 0.3472054189866529,
+        "ensemble_after_normalizer": 0.9913232768390867,
+        "threshold": 0.45187410281008106,
+        "caught": {
+          "classifier_before": false,
+          "classifier_after_normalizer": true,
+          "ensemble_before": false,
+          "ensemble_after_normalizer": true
+        }
+      },
+      "zero_width": {
+        "label": 1,
+        "classifier_before": 0.9238021473158022,
+        "classifier_after_normalizer": 0.9845296711701924,
+        "ensemble_before": 0.9867237053027018,
+        "ensemble_after_normalizer": 0.9913232768390867,
+        "threshold": 0.45187410281008106,
+        "caught": {
+          "classifier_before": true,
+          "classifier_after_normalizer": true,
+          "ensemble_before": true,
+          "ensemble_after_normalizer": true
+        }
+      },
+      "base64_wrapped": {
+        "label": 1,
+        "classifier_before": 0.22594250753998188,
+        "classifier_after_normalizer": 0.22594250753998188,
+        "ensemble_before": 0.1816875428698564,
+        "ensemble_after_normalizer": 0.1816875428698564,
+        "threshold": 0.45187410281008106,
+        "caught": {
+          "classifier_before": false,
+          "classifier_after_normalizer": false,
+          "ensemble_before": false,
+          "ensemble_after_normalizer": false
+        }
+      },
+      "paraphrase": {
+        "label": 1,
+        "classifier_before": 0.4787493488479036,
+        "classifier_after_normalizer": 0.4787493488479036,
+        "ensemble_before": 0.6163412409550225,
+        "ensemble_after_normalizer": 0.6163412409550225,
+        "threshold": 0.45187410281008106,
+        "caught": {
+          "classifier_before": true,
+          "classifier_after_normalizer": true,
+          "ensemble_before": true,
+          "ensemble_after_normalizer": true
+        }
+      },
+      "two_channels": {
+        "label": 1,
+        "classifier_before": 0.9642769718574326,
+        "classifier_after_normalizer": 0.9642769718574326,
+        "ensemble_before": 0.9899987705005683,
+        "ensemble_after_normalizer": 0.9899987705005683,
+        "threshold": 0.45187410281008106,
+        "caught": {
+          "classifier_before": true,
+          "classifier_after_normalizer": true,
+          "ensemble_before": true,
+          "ensemble_after_normalizer": true
+        }
+      }
+    },
+    "remaining_misses": [
+      "base64_wrapped"
+    ],
+    "note": "Base64 payload is intentionally not decoded: decoding arbitrary payloads could introduce unrelated text and is not part of this detector."
+  },
+  "tuned_parameters": {
+    "classifier": {
+      "threshold": 0.3730677104690087,
+      "tuned_on": "val",
+      "target_fpr_strictly_below": 0.1
+    },
+    "heuristics": {
+      "threshold": 0.22635838150289017,
+      "tuned_on": "val",
+      "target_fpr_strictly_below": 0.1
+    },
+    "perplexity": {
+      "threshold": 0.29070643246741296,
+      "tuned_on": "val",
+      "target_fpr_strictly_below": 0.1
+    },
+    "keyword": {
+      "threshold": 0.5,
+      "tuned_on": "val",
+      "target_fpr_strictly_below": 0.1
+    },
+    "ensemble": {
+      "threshold": 0.45187410281008106,
+      "weights": [
+        7.080591306492989,
+        0.8758425438379556,
+        0.03731958568766344
+      ],
+      "bias": -3.11530606696062,
+      "features": [
+        "classifier",
+        "heuristics",
+        "perplexity"
+      ],
+      "tuned_on": "val",
+      "target_fpr_strictly_below": 0.1
+    }
+  },
+  "perplexity_backend": "ngram",
+  "optional_transformer": "distilgpt2 loaded only from local cache if present; otherwise clean-train n-gram fallback; no network attempted",
+  "external_classifier_baseline": "not run (optional dependencies/weights not present; no network downloads)",
+  "baselines": {
+    "keyword": {
+      "threshold": 0.5,
+      "threshold_selected_on": "val",
+      "test": {
+        "n": 510,
+        "accuracy": 0.6392156862745098,
+        "fpr": 0.011764705882352941,
+        "recall": 0.2901960784313726,
+        "precision": 0.961038961038961,
+        "f1": 0.44578313253012053,
+        "auroc": 0.6397231833910034,
+        "average_precision": 0.637153043035396
+      },
+      "bootstrap_95_carrier_ci": {
+        "accuracy": [
+          0.6098039215686275,
+          0.6647058823529411
+        ],
+        "fpr": [
+          0.0,
+          0.027450980392156862
+        ],
+        "recall": [
+          0.22745098039215686,
+          0.34509803921568627
+        ],
+        "precision": [
+          0.918918918918919,
+          1.0
+        ],
+        "f1": [
+          0.3682539682539682,
+          0.5085714285714286
+        ],
+        "auroc": [
+          0.6101268742791234,
+          0.6660130718954248
+        ],
+        "average_precision": [
+          0.6091954022988506,
+          0.6630371297455153
+        ]
+      },
+      "slices": {
+        "style": {
+          "None": {
+            "fpr": 0.011764705882352941
+          },
+          "authority_notice": {
+            "recall": 0.6285714285714286
+          },
+          "bipia_code": {
+            "recall": 0.027777777777777776
+          },
+          "agent_tool": {
+            "recall": 0.5263157894736842
+          },
+          "bipia_obfuscated": {
+            "recall": 0.0
+          },
+          "override_ops": {
+            "recall": 0.5454545454545454
+          },
+          "bipia_text": {
+            "recall": 0.0
+          },
+          "latent_task": {
+            "recall": 0.29545454545454547
+          }
+        },
+        "hiding": {
+          "None": {
+            "fpr": 0.011764705882352941
+          },
+          "none": {
+            "recall": 0.2900763358778626
+          },
+          "aria_label": {
+            "recall": 0.3
+          },
+          "html_comment": {
+            "recall": 0.25806451612903225
+          },
+          "white_on_white": {
+            "recall": 0.23529411764705882
+          },
+          "zero_font": {
+            "recall": 0.3181818181818182
+          },
+          "css_display_none": {
+            "recall": 0.3333333333333333
+          }
+        },
+        "position": {
+          "None": {
+            "fpr": 0.011764705882352941
+          },
+          "head": {
+            "recall": 0.2736842105263158
+          },
+          "tail": {
+            "recall": 0.2857142857142857
+          },
+          "middle": {
+            "recall": 0.3188405797101449
+          }
+        },
+        "kind": {
+          "table": {
+            "recall": 0.3,
+            "fpr": 0.0
+          },
+          "email": {
+            "recall": 0.3181818181818182,
+            "fpr": 0.045454545454545456
+          },
+          "web": {
+            "recall": 0.2949640287769784,
+            "fpr": 0.007194244604316547
+          },
+          "document": {
+            "recall": 0.18181818181818182,
+            "fpr": 0.0
+          }
+        },
+        "carrier_source": {
+          "BIPIA-table": {
+            "recall": 0.3,
+            "fpr": 0.0
+          },
+          "groq-qwen": {
+            "recall": 0.27419354838709675,
+            "fpr": 0.016129032258064516
+          },
+          "BIPIA-email": {
+            "recall": 0.35714285714285715,
+            "fpr": 0.0
+          },
+          "wikipedia-human": {
+            "recall": 0.2891566265060241,
+            "fpr": 0.0
+          },
+          "groq-gptoss": {
+            "recall": 0.27906976744186046,
+            "fpr": 0.046511627906976744
+          },
+          "gemini": {
+            "recall": 0.3333333333333333,
+            "fpr": 0.0
+          }
+        }
+      },
+      "tpr_at_5pct_fpr": {
+        "validation_threshold": 0.5,
+        "test_recall": 0.2901960784313726,
+        "bootstrap_95_carrier_ci": [
+          0.23137254901960785,
+          0.3411764705882353
+        ]
+      }
+    },
+    "published_rows": "BIPIA (Yi et al., arXiv:2312.14197) reports LLM attack/defense outcomes on a different task and is not a directly comparable text-classifier row; no accuracy/FPR number copied. External classifier not run."
+  },
+  "targets": {
+    "accuracy_minimum": 0.85,
+    "fpr_strict_maximum": 0.1,
+    "ensemble_accuracy_pass": true,
+    "ensemble_fpr_pass": true
+  },
+  "limitations": [
+    "English-only, text-only, paired 50/50 benchmark.",
+    "Gemini has 23 carriers total.",
+    "Screening signal, not proof of compromise."
+  ]
+}

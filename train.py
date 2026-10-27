@@ -5,6 +5,7 @@ import math
 import pathlib
 import random
 import re
+import argparse
 
 from evaluate import evaluate, pick_threshold
 
@@ -90,12 +91,14 @@ def score_text(text, vocabulary, idf, weights, bias):
     return sigmoid(bias + sum(weights[index] * value for index, value in features.items()))
 
 
-def main():
+def main(argv=None):
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--no-evaluate", action="store_true", help="train and select threshold on TRAIN/VAL without reading TEST")
+    args = parser.parse_args(argv)
     train_rows = load_rows("train")
     val_rows = load_rows("val")
-    test_rows = load_rows("test")
-    if not train_rows or not val_rows or not test_rows:
-        raise SystemExit("data/corpus.jsonl must contain non-empty train, val, and test splits")
+    if not train_rows or not val_rows:
+        raise SystemExit("data/corpus.jsonl must contain non-empty train and val splits")
     vocabulary, idf = build_vocabulary(train_rows)
     weights, bias = train_model(train_rows, vocabulary, idf)
     validation_scores = [score_text(row["text"], vocabulary, idf, weights, bias) for row in val_rows]
@@ -120,7 +123,8 @@ def main():
     def detector(texts):
         return [score_text(text, vocabulary, idf, weights, bias) for text in texts]
 
-    evaluate(detector, "TF-IDF logistic baseline", max_fpr=0.10)
+    if not args.no_evaluate:
+        evaluate(detector, "TF-IDF logistic baseline", max_fpr=0.10)
 
 
 if __name__ == "__main__":

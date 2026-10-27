@@ -24,3 +24,16 @@ def decide(score, config):
     else:
         decision = "allow"
     return {"decision": decision, "score": round(float(score), 4), "policy": config["name"]}
+
+
+def apply_document(text, score, config=None, html=False, sanitizer=None):
+    """Apply policy after screening; never touches source files or executes requests."""
+    config = config or load_policy()
+    result = decide(score, config)
+    if result["decision"] == "allow":
+        return {**result, "delivered_text": text, "review_flag": False, "sanitization": None}
+    if result["decision"] == "quarantine":
+        return {**result, "delivered_text": "", "review_flag": False,
+                "sanitization": {"recorded_only": True, "artifact": "demo decision record"}}
+    sanitized = sanitizer(text, html=html) if sanitizer else {"clean_text": text, "removed_spans": []}
+    return {**result, "delivered_text": sanitized["clean_text"], "review_flag": True, "sanitization": sanitized}

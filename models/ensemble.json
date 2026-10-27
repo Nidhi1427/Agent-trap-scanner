@@ -1,0 +1,16 @@
+{
+  "model": "validation-logistic-stack",
+  "features": [
+    "classifier",
+    "heuristics",
+    "perplexity"
+  ],
+  "weights": [
+    7.080591306492989,
+    0.8758425438379556,
+    0.03731958568766344
+  ],
+  "bias": -3.11530606696062,
+  "threshold": 0.45187410281008106,
+  "fit_split": "val"
+}

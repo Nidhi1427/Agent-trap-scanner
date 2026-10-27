@@ -1,0 +1,6 @@
+{
+  "name": "heuristics-v1",
+  "threshold": 0.34,
+  "weights": {"override": 0.48, "imperative_density": 0.22, "sensitive_target": 0.22, "hidden_channel": 0.32},
+  "note": "Hand-set interpretable weights; operating threshold selected on validation; edit only with validation evaluation."
+}

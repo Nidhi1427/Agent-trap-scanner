@@ -1,74 +1,30 @@
 <!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Agent Trap Scanner · Offline Demo</title>
-  <style>
-    :root { color-scheme: light; --ink:#172322; --muted:#60716e; --line:#dce6e2; --paper:#f5f8f6; --card:#fff; --green:#126b58; --green-bg:#e6f4ef; --amber:#8a5a00; --amber-bg:#fff4d9; --red:#9a3434; --red-bg:#fbe9e7; --shadow:0 12px 32px #183b3010; }
-    * { box-sizing:border-box; }
-    body { margin:0; background:var(--paper); color:var(--ink); font:15px/1.55 "Segoe UI",system-ui,sans-serif; }
-    header { padding:42px max(24px,calc((100vw - 1100px)/2)) 30px; background:#eaf3ef; border-bottom:1px solid var(--line); }
-    .eyebrow { color:var(--green); text-transform:uppercase; letter-spacing:.13em; font-size:11px; font-weight:750; }
-    h1 { font-size:clamp(30px,5vw,48px); line-height:1.05; letter-spacing:-.04em; margin:10px 0; }
-    header p { max-width:720px; color:var(--muted); margin:0; }
-    main { max-width:1100px; margin:28px auto 64px; padding:0 24px; }
-    .notice { border:1px solid #e7d6a9; background:#fff9e9; border-radius:12px; padding:13px 16px; color:#634d19; margin-bottom:22px; }
-    .metrics { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-bottom:25px; }
-    .metric,.panel,.case { background:var(--card); border:1px solid var(--line); border-radius:14px; box-shadow:var(--shadow); }
-    .metric { padding:18px; } .metric strong { display:block; font-size:27px; letter-spacing:-.03em; } .metric span { color:var(--muted); font-size:13px; }
-    .section-head { display:flex; align-items:end; justify-content:space-between; gap:18px; margin:28px 0 13px; }
-    h2 { margin:0; font-size:22px; letter-spacing:-.02em; } .section-head p { margin:3px 0 0; color:var(--muted); font-size:13px; }
-    .cases { display:grid; grid-template-columns:repeat(2,1fr); gap:14px; }
-    .case { padding:18px; min-width:0; } .case-top { display:flex; align-items:start; justify-content:space-between; gap:12px; }
-    h3 { font-size:16px; margin:0 0 3px; } .kind { color:var(--muted); font-size:12px; }
-    .badge { display:inline-flex; align-items:center; padding:4px 9px; border-radius:999px; font-weight:700; font-size:12px; white-space:nowrap; }
-    .allow { background:var(--green-bg); color:var(--green); } .hold { background:var(--amber-bg); color:var(--amber); } .quarantine { background:var(--red-bg); color:var(--red); }
-    pre { overflow:auto; white-space:pre-wrap; overflow-wrap:anywhere; background:#f5f7f6; border:1px solid #e8eeeb; border-radius:9px; padding:12px; font:12px/1.5 ui-monospace,Consolas,monospace; color:#334542; max-height:140px; }
-    .details { display:grid; grid-template-columns:1fr 1fr; gap:8px; color:var(--muted); font-size:13px; }
-    .details b { color:var(--ink); font-weight:650; } .pass { color:var(--green)!important; } .miss { color:var(--red)!important; }
-    .lower { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:18px; }
-    .panel { padding:19px; } .panel h2 { font-size:18px; margin-bottom:10px; }
-    .request { display:flex; justify-content:space-between; align-items:center; gap:12px; border-top:1px solid var(--line); padding:10px 0; font-size:13px; }
-    .request code { color:#52625f; overflow-wrap:anywhere; }
-    footer { text-align:center; color:var(--muted); font-size:12px; padding:18px; }
-    @media(max-width:720px) { .metrics{grid-template-columns:repeat(2,1fr)} .cases,.lower{grid-template-columns:1fr} header{padding-top:30px} }
-  </style>
-</head>
-<body>
-  <header>
-    <div class="eyebrow">Offline research demo</div>
-    <h1>Agent Trap Scanner</h1>
-    <p>Prompt-injection screening with a separate document policy and tool authorization gate. This page reads the local demo results; it makes no network or model API calls.</p>
-  </header>
-  <main>
-    <div class="notice"><strong>Screening signal only.</strong> A score or decision is not proof of compromise. Quarantine below is recorded for demonstration; no files are moved or deleted.</div>
-    <section class="metrics" aria-label="Benchmark metrics">
-      <div class="metric"><strong>0.935</strong><span>Test AUROC</span></div>
-      <div class="metric"><strong>0.776</strong><span>Test recall</span></div>
-      <div class="metric"><strong>0.055</strong><span>Overall test FPR</span></div>
-      <div class="metric"><strong>0.182</strong><span>Email slice FPR</span></div>
-    </section>
-    <section>
-      <div class="section-head"><div><h2>Document checks</h2><p>Input → scanner score → policy decision → demo outcome</p></div></div>
-      <div class="cases" id="documents"><p>Loading local demo results…</p></div>
-    </section>
-    <section class="lower">
-      <div class="panel"><h2>Tool authorization</h2><p style="color:var(--muted);font-size:13px;margin-top:-4px">Only allowlisted requests reach the recording mock executor.</p><div id="tools">Loading…</div></div>
-      <div class="panel"><h2>Component results</h2><div id="summary" style="color:var(--muted);font-size:14px">Loading…</div><p style="font-size:12px;color:var(--muted);margin-bottom:0">The obfuscated injection is expected to demonstrate a detector miss. Policy and authorization are assessed independently.</p></div>
-    </section>
-    <footer>Agent Trap Scanner · Local demo · No external services</footer>
-  </main>
-  <script>
-    const esc = value => String(value).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-    const badgeClass = d => d === 'quarantine' ? 'quarantine' : d === 'hold_for_review' ? 'hold' : 'allow';
-    const badgeText = d => d === 'hold_for_review' ? 'Hold for review' : d[0].toUpperCase()+d.slice(1);
-    fetch('/reports/demo_results.json').then(r => { if(!r.ok) throw new Error('Could not load reports/demo_results.json'); return r.json(); }).then(data => {
-      const docs = document.getElementById('documents');
-      docs.innerHTML = data.scanner.cases.map(c => `<article class="case"><div class="case-top"><div><h3>${esc(c.input.id.replaceAll('-',' '))}</h3><div class="kind">${esc(c.input.kind.toUpperCase())} input</div></div><span class="badge ${badgeClass(c.policy.decision)}">${badgeText(c.policy.decision)}</span></div><pre>${esc(c.input.text)}</pre><div class="details"><span>Raw score <b>${Number(c.scanner.raw_score).toFixed(4)}</b></span><span>Threshold <b>${Number(c.scanner.threshold).toFixed(4)}</b></span><span>Scanner <b>${esc(c.scanner.label)}</b></span><span>Expected ${c.scanner.expected_injection ? 'injection' : 'benign'} <b class="${c.scanner.case_correct?'pass':'miss'}">${c.scanner.case_correct?'PASS':'MISS'}</b></span></div></article>`).join('');
-      document.getElementById('tools').innerHTML = data.tool_authorization.cases.map(c => `<div class="request"><span>${esc(c.input.id)}</span><span class="badge ${c.authorization.authorized?'allow':'quarantine'}">${c.authorization.authorized?'Allowed':'Rejected'}</span></div>`).join('') + `<p style="font-size:12px;color:var(--muted);margin-bottom:0">Mock executor calls: <b>${esc(data.tool_authorization.mock_executor_calls.join(', ') || 'none')}</b></p>`;
-      document.getElementById('summary').innerHTML = `<p>Scanner: <b>${data.scanner.passed}/${data.scanner.total}</b> sample cases matched expected labels.</p><p>Document policy: <b>${data.document_policy.passed}/${data.document_policy.total}</b> decisions passed.</p><p>Tool authorization: <b>${data.tool_authorization.passed?'PASS':'FAIL'}</b>; rejected requests were not executed.</p><p>Quarantine: <b>recorded only</b>; no real files changed.</p>`;
-    }).catch(err => { document.getElementById('documents').textContent = err.message; document.getElementById('tools').textContent = 'Demo data unavailable.'; document.getElementById('summary').textContent = 'Start the local server from the project root.'; });
-  </script>
-</body>
-</html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Agent Trap Scanner · Research demo</title>
+<style>
+:root{font:15px/1.5 system-ui,Segoe UI,sans-serif;color:#172322;background:#f3f7f5}*{box-sizing:border-box}body{margin:0}header{padding:28px max(20px,calc((100vw - 1100px)/2));background:#e5f1ec;border-bottom:1px solid #ccdcd5}h1{margin:0;font-size:36px}main{max-width:1100px;margin:24px auto;padding:0 18px}.notice,.card{background:white;border:1px solid #d7e3dd;border-radius:12px;padding:17px;margin:14px 0}.notice{background:#fff6dd;border-color:#e8d49d}.tabs{display:flex;gap:8px;margin:18px 0}.tabs button,button,select{padding:9px 12px;border:1px solid #9bb4a8;border-radius:8px;background:#fff;cursor:pointer}.tab.active{background:#126b58;color:white}.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}textarea{width:100%;height:190px;padding:12px;border:1px solid #cad8d1;border-radius:8px;font:13px/1.5 Consolas,monospace}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#f5f8f6;padding:12px;border-radius:8px;max-height:250px;overflow:auto}.metrics{display:flex;gap:10px;flex-wrap:wrap}.metric{padding:12px;background:#edf5f1;border-radius:9px;min-width:130px}.metric b{display:block;font-size:21px}.ok{color:#14634f}.bad{color:#a23333}.muted{color:#5d7068}.hidden{display:none}table{border-collapse:collapse;width:100%;font-size:13px}td,th{padding:7px;border-bottom:1px solid #dce6e1;text-align:left}mark{background:#ffd6d2;text-decoration:line-through}code{background:#eef2ef;padding:2px 4px}@media(max-width:700px){.grid{grid-template-columns:1fr}h1{font-size:29px}}
+</style></head><body><header><h1>Agent Trap Scanner</h1><div>Offline prompt-injection research demo · Python standard library baseline</div></header><main>
+<div class="notice"><b>Screening signal, not proof.</b> Scores and decisions do not establish intent or compromise. Quarantine is only a recorded demo decision; no real files are moved or changed.</div>
+<nav class="tabs"><button class="tab active" data-tab="live">Live scan & removal</button><button class="tab" data-tab="bench">Benchmark & evidence</button></nav>
+<section id="live">
+<div class="card"><label for="sample">Built-in independent sample: </label><select id="sample"><option value="">Choose sample…</option></select> <label><input id="html" type="checkbox"> Treat as HTML</label>
+<textarea id="input" placeholder="Paste text or HTML to scan"></textarea><p><button id="scan">Scan and sanitize</button> <span id="status" class="muted">Local processing only.</span></p></div>
+<div class="grid"><article class="card"><h2>Detector results</h2><div id="scores" class="metrics"></div><pre id="rules">Per-detector details appear after scanning.</pre><div id="outcome"></div></article>
+<article class="card"><h2>Agent view · raw → received</h2><div class="grid"><div><b>Raw input</b><pre id="raw"></pre></div><div><b>Agent receives</b><pre id="agent"></pre></div></div><h3>Removed spans</h3><div id="removed"></div></article></div>
+<div class="card"><h2>Mock agent tool request</h2><p>The allowlist is checked before the recording executor.</p><select id="tool"><option>lookup_public_help</option><option>read_private_file</option><option>send_email</option><option>delete_records</option></select> <button id="request">Request tool</button><pre id="toolresult">No request yet.</pre></div>
+</section>
+<section id="bench" class="hidden"><div class="card"><h2>Frozen benchmark evidence</h2><div id="evidence">Loading report data…</div></div><div class="card"><h2>Independent component checks</h2><div id="components">Loading component cases…</div></div><div class="card"><h2>Ablation: detectors and combinations</h2><div id="ablation"></div></div><div class="card"><h2>Slice weaknesses & evasion</h2><div id="slices"></div></div></section>
+</main><script>
+const $=s=>document.querySelector(s),esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));let samples=[];
+document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>{document.querySelectorAll('.tab').forEach(x=>x.classList.toggle('active',x===b));$('#live').classList.toggle('hidden',b.dataset.tab!=='live');$('#bench').classList.toggle('hidden',b.dataset.tab!=='bench')});
+fetch('/api/samples').then(r=>r.json()).then(x=>{samples=x;$('#sample').innerHTML='<option value="">Choose sample…</option>'+x.map((s,i)=>`<option value="${i}">${esc(s.id)}</option>`).join('')});$('#sample').onchange=e=>{let s=samples[e.target.value];if(!s)return;$('#input').value=s.text;$('#html').checked=s.kind==='html'};
+const highlight=(text,spans)=>{let rest=text,out='';for(const s of spans){let i=rest.indexOf(s.text);if(i<0)continue;out+=esc(rest.slice(0,i))+`<mark title="${esc(s.channel+': '+s.reasons.join(', '))}">${esc(s.text)}</mark>`;rest=rest.slice(i+s.text.length)}return out+esc(rest)};
+$('#scan').onclick=async()=>{let text=$('#input').value;if(!text.trim())return;$('#status').textContent='Scanning locally…';try{let r=await fetch('/api/scan',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({text,html:$('#html').checked})});let d=await r.json();if(d.error)throw Error(d.error);$('#scores').innerHTML=Object.entries(d.scores).map(([k,v])=>`<div class="metric"><b>${Number(v).toFixed(4)}</b>${esc(k)}</div>`).join('')+`<div class="metric"><b>${Number(d.ensemble_score).toFixed(4)}</b>Ensemble / ${Number(d.ensemble_threshold).toFixed(4)}</div>`;$('#rules').textContent=JSON.stringify({rules:d.rules_fired,perplexity_backend:d.perplexity_backend,policy:d.policy,sanitization:{original_score:d.sanitization.original_score,residual_score:d.sanitization.residual_score}},null,2);$('#outcome').innerHTML=`<b>Final outcome: ${esc(d.final_outcome)}</b>${d.review_flag?' · human review required':''}`;$('#raw').innerHTML=highlight(text,d.sanitization.removed_spans);$('#agent').textContent=d.agent_view||'(withheld by quarantine decision)';$('#removed').innerHTML=d.sanitization.removed_spans.length?d.sanitization.removed_spans.map(x=>`<div><b>${esc(x.channel)}</b> · ${esc(x.reasons.join(', '))}<pre>${esc(x.text)}</pre></div>`).join(''):'No spans removed.';$('#status').textContent='Completed; no external services used.'}catch(e){$('#status').textContent=e.message}};
+$('#request').onclick=async()=>{let r=await fetch('/api/tool',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({tool:$('#tool').value})});$('#toolresult').textContent=JSON.stringify(await r.json(),null,2)};
+fetch('/api/benchmark').then(r=>r.json()).then(d=>{if(!d.results){$('#evidence').textContent='Run py -3.14 evaluate.py --all to generate reports/ablation.json.';return}let e=d.results.ensemble.test;let authors=Object.entries(d.authorship_counts).map(([k,v])=>`${esc(k)}: ${v} carriers`).join(' · ');$('#evidence').innerHTML=`<p>Seed <b>${d.seed}</b> · corpus SHA256 <code>${esc(d.corpus_sha256)}</code> · commit <code>${esc(d.git_commit)}</code></p><p>Rows: ${Object.entries(d.splits).map(([k,v])=>`${k} ${Object.values(v).reduce((a,b)=>a+b,0)}`).join(' · ')}. Authorship source carrier counts: ${authors}</p><div class="metrics"><div class="metric"><b class="${e.accuracy>=.85?'ok':'bad'}">${e.accuracy.toFixed(3)}</b>Accuracy / target ≥ .85 ${e.accuracy>=.85?'PASS':'FAIL'}</div><div class="metric"><b class="${e.fpr<.10?'ok':'bad'}">${e.fpr.toFixed(3)}</b>FPR / target &lt; .10 ${e.fpr<.10?'PASS':'FAIL'}</div><div class="metric"><b>${e.recall.toFixed(3)}</b>Recall</div><div class="metric"><b>${e.auroc.toFixed(3)}</b>AUROC</div></div><p>Gemini limitation: ${esc(d.gemini_limitation)}. External pretrained baseline: ${esc(d.external_classifier_baseline)}. Perplexity backend: ${esc(d.perplexity_backend)}.</p>`;
+let rows=Object.entries(d.results);$('#ablation').innerHTML='<table><thead><tr><th>Method</th><th>Acc</th><th>FPR</th><th>Recall</th><th>Precision</th><th>AUROC</th><th>TPR@5%</th></tr></thead><tbody>'+rows.map(([n,x])=>`<tr><td>${esc(n)}</td><td>${x.test.accuracy.toFixed(3)}</td><td>${x.test.fpr.toFixed(3)}</td><td>${x.test.recall.toFixed(3)}</td><td>${x.test.precision.toFixed(3)}</td><td>${x.test.auroc.toFixed(3)}</td><td>${x.tpr_at_5pct_fpr.test_recall.toFixed(3)}</td></tr>`).join('')+'</tbody></table>';
+let s=d.source_test_slices||{},kind=d.results.ensemble.slices.kind||{};let ev=d.evasion||{};let removal=d.removal_quality||{};$('#slices').innerHTML='<h3>Ensemble source slices (test)</h3><table><tr><th>Authorship source</th><th>Carriers</th><th>FPR</th><th>Recall</th></tr>'+Object.entries(s).map(([n,x])=>`<tr><td>${esc(n)}</td><td>${x.carriers}</td><td>${x.fpr.toFixed(3)}</td><td>${x.recall.toFixed(3)}</td></tr>`).join('')+'</table><h3>Kind weaknesses</h3><p>'+Object.entries(kind).map(([n,x])=>`${esc(n)} FPR ${x.fpr===undefined?'n/a':x.fpr.toFixed(3)} / recall ${x.recall===undefined?'n/a':x.recall.toFixed(3)}`).join(' · ')+'</p><h3>Removal test-split quality</h3><p>Exact injected strings absent after sanitize: ${(100*removal.injected_string_removal_fraction).toFixed(1)}% (${removal.injected_strings_removed}/${removal.injected_rows}); clean characters wrongly removed (estimated): ${(100*removal.clean_character_false_removal_fraction).toFixed(2)}%; residual score mean ${removal.residual_score_mean.toFixed(3)}.</p><h3>Generated evasion suite · separate from benchmark</h3><p>Recall classifier raw ${(100*ev.recall.classifier_before).toFixed(0)}%; classifier normalized ${(100*ev.recall.classifier_after_normalizer).toFixed(0)}%; ensemble raw ${(100*ev.recall.ensemble_before).toFixed(0)}%; ensemble normalized ${(100*ev.recall.ensemble_after_normalizer).toFixed(0)}%.</p><table><tr><th>Transform</th><th>Classifier</th><th>Classifier normalized</th><th>Ensemble</th><th>Ensemble normalized</th></tr>'+Object.entries(ev.cases||{}).map(([n,x])=>`<tr><td>${esc(n)}</td><td>${x.caught.classifier_before?'caught':'miss'}</td><td>${x.caught.classifier_after_normalizer?'caught':'miss'}</td><td>${x.caught.ensemble_before?'caught':'miss'}</td><td>${x.caught.ensemble_after_normalizer?'caught':'miss'}</td></tr>`).join('')+`</table><p>Remaining ensemble normalized misses: ${esc((ev.remaining_misses||[]).join(', ')||'none')}.</p><p>External trained classifier: not run; keyword baseline appears in table above. Gemini has only 23 carriers.</p><p><b>O1</b> met: 3,400 paired rows; human plus 3 named LLM sources, counts above. <b>O2</b> partly met: all three signals stack, but hand-set weights and ensemble are not stronger than best single on every metric. <b>O3</b> ${d.targets.ensemble_accuracy_pass&&d.targets.ensemble_fpr_pass?'partly met: numerical targets pass; published detector comparison not run on common corpus':'not met: one or both numeric targets fail'} · <b>O4</b> met: runnable offline web app and report. <b>Hybrid + removal</b> partly met: measured removal above; evasion misses remain; signal is not proof.</p>`
+}).catch(()=>$('#evidence').textContent='Benchmark report missing; run evaluate.py --all.')
+fetch('/api/components').then(r=>r.json()).then(d=>{if(!d.scanner_detection){$('#components').textContent='Run py -3.14 demo.py to generate independent scanner, policy, and authorization results.';return}let parts=[['Scanner detection',d.scanner_detection],['Document policy',d.document_policy],['Tool authorization',d.tool_authorization]];$('#components').innerHTML=parts.map(([n,x])=>`<p><b>${esc(n)}:</b> ${x.passed}/${x.total} checks passed.</p>`).join('')+`<p>Mock executor calls: <code>${esc(d.tool_authorization.mock_executor_calls.join(', ')||'none')}</code>. Unauthorized requests are checked to have executor_called=false.</p>`+`<p>Scanner cases: ${d.scanner_detection.cases.map(x=>`${esc(x.input.id)} ${x.scanner.case_correct?'PASS':'MISS'}`).join(' · ')}</p>`}).catch(()=>$('#components').textContent='Component results unavailable.')
+</script></body></html>
+
+

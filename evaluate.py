@@ -174,8 +174,16 @@ KEYWORDS = [r"ignore (all )?(previous|prior|above) instructions", r"disregard", 
 
 
 def keyword_detector(texts):
-    return [sum(bool(re.search(pattern, text, re.I)) for pattern in KEYWORDS) for text in texts]
+    return [min(1.0, sum(bool(re.search(pattern, text, re.I)) for pattern in KEYWORDS) / 2.0) for text in texts]
 
 
 if __name__ == "__main__":
-    evaluate(keyword_detector, "keyword baseline")
+    import argparse
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--all", action="store_true", help="run all detector/ablation evaluation and save reports/")
+    args = parser.parse_args()
+    if args.all:
+        from research_eval import evaluate_all
+        evaluate_all()
+    else:
+        evaluate(keyword_detector, "keyword baseline")

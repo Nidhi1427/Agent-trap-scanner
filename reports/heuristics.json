@@ -1,0 +1,172 @@
+{
+  "name": "heuristics",
+  "threshold": 0.22635838150289017,
+  "threshold_selected_on": "val",
+  "test": {
+    "n": 510,
+    "accuracy": 0.592156862745098,
+    "fpr": 0.03137254901960784,
+    "recall": 0.21568627450980393,
+    "precision": 0.873015873015873,
+    "f1": 0.34591194968553457,
+    "auroc": 0.6324644367550942,
+    "average_precision": 0.6444508492763086
+  },
+  "bootstrap_95_carrier_ci": {
+    "accuracy": [
+      0.5686274509803921,
+      0.6176470588235294
+    ],
+    "fpr": [
+      0.011764705882352941,
+      0.050980392156862744
+    ],
+    "recall": [
+      0.1607843137254902,
+      0.27058823529411763
+    ],
+    "precision": [
+      0.8115942028985508,
+      0.9464285714285714
+    ],
+    "f1": [
+      0.2751677852348993,
+      0.41194029850746267
+    ],
+    "auroc": [
+      0.6064436755094195,
+      0.662083813917724
+    ],
+    "average_precision": [
+      0.6186302284295293,
+      0.6729901437075305
+    ]
+  },
+  "slices": {
+    "style": {
+      "None": {
+        "fpr": 0.03137254901960784
+      },
+      "authority_notice": {
+        "recall": 0.05714285714285714
+      },
+      "bipia_code": {
+        "recall": 0.027777777777777776
+      },
+      "agent_tool": {
+        "recall": 0.6052631578947368
+      },
+      "bipia_obfuscated": {
+        "recall": 0.11428571428571428
+      },
+      "override_ops": {
+        "recall": 0.5454545454545454
+      },
+      "bipia_text": {
+        "recall": 0.08823529411764706
+      },
+      "latent_task": {
+        "recall": 0.09090909090909091
+      }
+    },
+    "hiding": {
+      "None": {
+        "fpr": 0.03137254901960784
+      },
+      "none": {
+        "recall": 0.21374045801526717
+      },
+      "aria_label": {
+        "recall": 0.16666666666666666
+      },
+      "html_comment": {
+        "recall": 0.1935483870967742
+      },
+      "white_on_white": {
+        "recall": 0.29411764705882354
+      },
+      "zero_font": {
+        "recall": 0.18181818181818182
+      },
+      "css_display_none": {
+        "recall": 0.2916666666666667
+      }
+    },
+    "position": {
+      "None": {
+        "fpr": 0.03137254901960784
+      },
+      "head": {
+        "recall": 0.2631578947368421
+      },
+      "tail": {
+        "recall": 0.18681318681318682
+      },
+      "middle": {
+        "recall": 0.18840579710144928
+      }
+    },
+    "kind": {
+      "table": {
+        "recall": 0.18,
+        "fpr": 0.06
+      },
+      "email": {
+        "recall": 0.3181818181818182,
+        "fpr": 0.022727272727272728
+      },
+      "web": {
+        "recall": 0.22302158273381295,
+        "fpr": 0.02877697841726619
+      },
+      "document": {
+        "recall": 0.045454545454545456,
+        "fpr": 0.0
+      }
+    },
+    "carrier_source": {
+      "BIPIA-table": {
+        "recall": 0.18,
+        "fpr": 0.06
+      },
+      "groq-qwen": {
+        "recall": 0.24193548387096775,
+        "fpr": 0.04838709677419355
+      },
+      "BIPIA-email": {
+        "recall": 0.2857142857142857,
+        "fpr": 0.0
+      },
+      "wikipedia-human": {
+        "recall": 0.20481927710843373,
+        "fpr": 0.012048192771084338
+      },
+      "groq-gptoss": {
+        "recall": 0.23255813953488372,
+        "fpr": 0.023255813953488372
+      },
+      "gemini": {
+        "recall": 0.0,
+        "fpr": 0.0
+      }
+    }
+  },
+  "tpr_at_5pct_fpr": {
+    "validation_threshold": 0.22956521739130434,
+    "test_recall": 0.1803921568627451,
+    "bootstrap_95_carrier_ci": [
+      0.13333333333333333,
+      0.2235294117647059
+    ]
+  },
+  "git_commit": "4fc9dde62198080ffaca1e48596ba6d0249d3bf3",
+  "seed": 0,
+  "corpus_sha256": "3d3606ee3cc86d6560730f1cedf9143724cc5ec4030aef4931f9f267246acbef",
+  "model_sha256": "4591b3596b96f56d39d0d15033ff6b4276fe73ccc0bdcbff60a2cf3bba93a529",
+  "config_sha256": {
+    "config/detector_thresholds.json": "6f22580d1b03c641f9ad9364b3fcac01b9d713ea60f19c19868f9d32d836a098",
+    "config/heuristics.json": "b75f6b52b3c97cb2a2fe7d6d3e2ee5326de21abc2cf24978e348ca0bbc818b58",
+    "config/perplexity.json": "fbb304a845b3c9a140975e2c55647509231e1e6c3cba6c3f277ac8d506dea0b3",
+    "config/document_policy.json": "b8c0149ec3c7424a830806f6a2afa7586f8b2dec8ed06952b2dde51357a31761"
+  }
+}

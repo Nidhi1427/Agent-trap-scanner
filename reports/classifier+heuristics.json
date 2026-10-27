@@ -1,0 +1,172 @@
+{
+  "name": "classifier+heuristics",
+  "threshold": 0.3730677104690087,
+  "threshold_selected_on": "val",
+  "test": {
+    "n": 510,
+    "accuracy": 0.8607843137254902,
+    "fpr": 0.054901960784313725,
+    "recall": 0.7764705882352941,
+    "precision": 0.9339622641509434,
+    "f1": 0.8479657387580299,
+    "auroc": 0.935763168012303,
+    "average_precision": 0.9490921396134031
+  },
+  "bootstrap_95_carrier_ci": {
+    "accuracy": [
+      0.8274509803921568,
+      0.8901960784313725
+    ],
+    "fpr": [
+      0.03137254901960784,
+      0.08627450980392157
+    ],
+    "recall": [
+      0.7176470588235294,
+      0.8274509803921568
+    ],
+    "precision": [
+      0.8995433789954338,
+      0.961352657004831
+    ],
+    "f1": [
+      0.8078602620087336,
+      0.8818565400843883
+    ],
+    "auroc": [
+      0.9161860822760477,
+      0.9536639753940792
+    ],
+    "average_precision": [
+      0.9338064658647799,
+      0.9617277109897076
+    ]
+  },
+  "slices": {
+    "style": {
+      "None": {
+        "fpr": 0.054901960784313725
+      },
+      "authority_notice": {
+        "recall": 0.8571428571428571
+      },
+      "bipia_code": {
+        "recall": 1.0
+      },
+      "agent_tool": {
+        "recall": 1.0
+      },
+      "bipia_obfuscated": {
+        "recall": 0.22857142857142856
+      },
+      "override_ops": {
+        "recall": 1.0
+      },
+      "bipia_text": {
+        "recall": 0.29411764705882354
+      },
+      "latent_task": {
+        "recall": 0.9772727272727273
+      }
+    },
+    "hiding": {
+      "None": {
+        "fpr": 0.054901960784313725
+      },
+      "none": {
+        "recall": 0.816793893129771
+      },
+      "aria_label": {
+        "recall": 0.6666666666666666
+      },
+      "html_comment": {
+        "recall": 0.7096774193548387
+      },
+      "white_on_white": {
+        "recall": 0.7058823529411765
+      },
+      "zero_font": {
+        "recall": 0.8181818181818182
+      },
+      "css_display_none": {
+        "recall": 0.7916666666666666
+      }
+    },
+    "position": {
+      "None": {
+        "fpr": 0.054901960784313725
+      },
+      "head": {
+        "recall": 0.7368421052631579
+      },
+      "tail": {
+        "recall": 0.7692307692307693
+      },
+      "middle": {
+        "recall": 0.8405797101449275
+      }
+    },
+    "kind": {
+      "table": {
+        "recall": 0.76,
+        "fpr": 0.0
+      },
+      "email": {
+        "recall": 0.8636363636363636,
+        "fpr": 0.18181818181818182
+      },
+      "web": {
+        "recall": 0.7553956834532374,
+        "fpr": 0.04316546762589928
+      },
+      "document": {
+        "recall": 0.7727272727272727,
+        "fpr": 0.0
+      }
+    },
+    "carrier_source": {
+      "BIPIA-table": {
+        "recall": 0.76,
+        "fpr": 0.0
+      },
+      "groq-qwen": {
+        "recall": 0.7903225806451613,
+        "fpr": 0.0967741935483871
+      },
+      "BIPIA-email": {
+        "recall": 0.7142857142857143,
+        "fpr": 0.0
+      },
+      "wikipedia-human": {
+        "recall": 0.7710843373493976,
+        "fpr": 0.04819277108433735
+      },
+      "groq-gptoss": {
+        "recall": 0.7906976744186046,
+        "fpr": 0.09302325581395349
+      },
+      "gemini": {
+        "recall": 1.0,
+        "fpr": 0.0
+      }
+    }
+  },
+  "tpr_at_5pct_fpr": {
+    "validation_threshold": 0.3997653383615892,
+    "test_recall": 0.7411764705882353,
+    "bootstrap_95_carrier_ci": [
+      0.6862745098039216,
+      0.792156862745098
+    ]
+  },
+  "git_commit": "4fc9dde62198080ffaca1e48596ba6d0249d3bf3",
+  "seed": 0,
+  "corpus_sha256": "3d3606ee3cc86d6560730f1cedf9143724cc5ec4030aef4931f9f267246acbef",
+  "model_sha256": "4591b3596b96f56d39d0d15033ff6b4276fe73ccc0bdcbff60a2cf3bba93a529",
+  "config_sha256": {
+    "config/detector_thresholds.json": "6f22580d1b03c641f9ad9364b3fcac01b9d713ea60f19c19868f9d32d836a098",
+    "config/heuristics.json": "b75f6b52b3c97cb2a2fe7d6d3e2ee5326de21abc2cf24978e348ca0bbc818b58",
+    "config/perplexity.json": "fbb304a845b3c9a140975e2c55647509231e1e6c3cba6c3f277ac8d506dea0b3",
+    "config/document_policy.json": "b8c0149ec3c7424a830806f6a2afa7586f8b2dec8ed06952b2dde51357a31761"
+  }
+}

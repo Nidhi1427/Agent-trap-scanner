@@ -1,0 +1,38 @@
+{
+  "classifier": {
+    "threshold": 0.3730677104690087,
+    "tuned_on": "val",
+    "target_fpr_strictly_below": 0.1
+  },
+  "heuristics": {
+    "threshold": 0.22635838150289017,
+    "tuned_on": "val",
+    "target_fpr_strictly_below": 0.1
+  },
+  "perplexity": {
+    "threshold": 0.29070643246741296,
+    "tuned_on": "val",
+    "target_fpr_strictly_below": 0.1
+  },
+  "keyword": {
+    "threshold": 0.5,
+    "tuned_on": "val",
+    "target_fpr_strictly_below": 0.1
+  },
+  "ensemble": {
+    "threshold": 0.45187410281008106,
+    "weights": [
+      7.080591306492989,
+      0.8758425438379556,
+      0.03731958568766344
+    ],
+    "bias": -3.11530606696062,
+    "features": [
+      "classifier",
+      "heuristics",
+      "perplexity"
+    ],
+    "tuned_on": "val",
+    "target_fpr_strictly_below": 0.1
+  }
+}

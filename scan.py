@@ -38,6 +38,8 @@ def main(argv=None):
     parser.add_argument("--html", action="store_true", help="parse the input as HTML and include visible/hidden text and selected attributes")
     parser.add_argument("--model", type=pathlib.Path, default=MODEL_PATH, help="trained model JSON path")
     parser.add_argument("--threshold", type=float, help="override the validation-selected threshold")
+    parser.add_argument("--ensemble", action="store_true", help="use the validation-fitted classifier/heuristic/perplexity stack")
+    parser.add_argument("--sanitize", action="store_true", help="return a non-destructive sanitized candidate and removed spans")
     args = parser.parse_args(argv)
     if not args.model.is_file():
         parser.error(f"model not found at {args.model}; run `py -3.14 train.py` first")
@@ -48,15 +50,31 @@ def main(argv=None):
         text = prepare_text(raw, bool(is_html))
         threshold = model["threshold"] if args.threshold is None else args.threshold
         score = score_text(text, model["vocabulary"], model["idf"], model["weights"], model["bias"])
+        detector_scores = {"classifier": score}
+        if args.ensemble:
+            from detectors.heuristics import Heuristics
+            from detectors.perplexity import Perplexity
+            from detectors.ensemble import sigmoid
+            features=[score,Heuristics().score([text])[0],Perplexity().score([text])[0]]
+            artifact=json.loads((MODEL_PATH.parent/"ensemble.json").read_text(encoding="utf-8"))
+            score=sigmoid(artifact["bias"]+sum(a*b for a,b in zip(artifact["weights"],features)))
+            threshold=artifact["threshold"] if args.threshold is None else args.threshold
+            detector_scores={"classifier":round(features[0],4),"heuristics":round(features[1],4),"perplexity":round(features[2],4)}
+        else:
+            threshold = model["threshold"] if args.threshold is None else args.threshold
         result = {
             "label": "possible_injection" if score >= threshold else "no_match",
             "score": round(score, 4),
             "threshold": round(threshold, 4),
+            "detector_scores": detector_scores,
             "word_count": len(text.split()),
             "flags": ["html_candidate_text_extracted"] if is_html else [],
             "top_features": explain(text, model),
             "notice": "A detector score is a screening signal, not proof of authorship, intent, or successful compromise.",
         }
+        if args.sanitize:
+            from sanitize import sanitize
+            result["sanitization"] = sanitize(raw, bool(is_html), threshold)
         print(json.dumps(result, indent=2, ensure_ascii=False))
     except (OSError, UnicodeError, ValueError, json.JSONDecodeError) as error:
         parser.error(str(error))
