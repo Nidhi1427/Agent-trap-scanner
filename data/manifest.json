@@ -1,0 +1,44 @@
+{
+  "dataset": "agent-trap-scanner",
+  "version": 1,
+  "seed": 0,
+  "toy_carriers": false,
+  "rows": 3400,
+  "carriers": 1700,
+  "split_counts": {
+    "train": {
+      "0": 1190,
+      "1": 1190
+    },
+    "val": {
+      "0": 255,
+      "1": 255
+    },
+    "test": {
+      "0": 255,
+      "1": 255
+    }
+  },
+  "corpus_sha256": "3d3606ee3cc86d6560730f1cedf9143724cc5ec4030aef4931f9f267246acbef",
+  "input_sha256": {
+    "carriers/real/gemini.jsonl": "6d539db9b5bc4ca82bf3872dc26becd96e4a34f6959b681c1b16373c7fd8f189",
+    "carriers/real/groq-gptoss.jsonl": "78c16c8c7529fa8052497453c025e1d5fac5e7fe0ee709428b8b5da6db4495cd",
+    "carriers/real/groq-qwen.jsonl": "bcc5a8f0502d41b0499f02ca23ae132bcadcd9d60edf4102019e0b5fd1405d3a",
+    "carriers/real/wikipedia.jsonl": "d418fd02edeee60284e02d1b7f165b9fbcff8f09fb2a1e6ed05d4e657bee8684",
+    "raw/BIPIA/benchmark/email/train.jsonl": "0130a694116e295d821fcc186eb225cdef2b222c3dc96a1cd13d0766f964e3d9",
+    "raw/BIPIA/benchmark/email/test.jsonl": "2d71aae20a84373089eadd20d7317e6040b4ef75a324588cbdc2e06e9c1a88c9",
+    "raw/BIPIA/benchmark/table/train.jsonl": "495491f72a499bf72b062754b5553b37ea02f8b68f9a9dc7bb8d2f79f96cdc7d",
+    "raw/BIPIA/benchmark/table/test.jsonl": "b84d81e80f5ab9e3a245387309ee38222d11bef1ae65be6daafdaba95dc5deed",
+    "raw/BIPIA/benchmark/text_attack_train.json": "ff08e5deda616db5f54acc2367683c4bfde20d0ce5c4c5857e6764dde505c747",
+    "raw/BIPIA/benchmark/text_attack_test.json": "e828d3e9e273ddf43c4b0c91e5803998f4314555d865e32bd4e0903ab746a3b9",
+    "raw/BIPIA/benchmark/code_attack_train.json": "ab13b6cf99afd82ac2d34ccfca835ce3636dd27e1591945b222893e83d5a0184",
+    "raw/BIPIA/benchmark/code_attack_test.json": "ab9f0563c7674074fb1cf82cb624196e9b5e3d62ac57b324b0745d23b7e55f87",
+    "raw/InjecAgent/data/attacker_cases_dh.jsonl": "50892300ce734d8d4e380ecf4f3309744b7d845acbe90108250b1f1e9c502e35",
+    "raw/InjecAgent/data/attacker_cases_ds.jsonl": "ca791c56bd88d61f688b30adc138e08300c7487c391d7a8d5dac90221965c61b",
+    "raw/garak/garak/data/payloads/normal_instructions.json": "4789e4fcaf04eb5903d8a3ad62464db6fdc968b5f63f0c21bfbf8b7b0a8952e4",
+    "build_corpus.py": "a61db651f3f3227a1badaac5a9480a86b9d15401036d2bc5726bf7a927b270a3",
+    "attacks.py": "7cc77b269e6f665fa2486a245cdbb523efa77b83d9fd471510090d5f9f05f617",
+    "carriers.py": "767cad07f21814d50d335ac2b13a7dfb65fa508cbf846b1e34679fa26dd65a55",
+    "extract.py": "3893c2d35ff2696f2990ab76b9a73559b8bef234265ced70cd5b0587a1a1f6dc"
+  }
+}

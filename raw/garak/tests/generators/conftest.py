@@ -1,0 +1,83 @@
+# SPDX-FileCopyrightText: Copyright (c) 2024 NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+# SPDX-License-Identifier: Apache-2.0
+
+import json
+import pytest
+import pathlib
+
+from garak.generators.openai import OpenAICompatible
+
+
+def pytest_configure(config):
+    config.addinivalue_line(
+        "markers",
+        "uri_connectivity: run the OpenAI-compatible URI connectivity check",
+    )
+
+
+@pytest.fixture(autouse=True)
+def disable_uri_connectivity_for_generator_tests(request, monkeypatch):
+    if request.node.get_closest_marker("uri_connectivity") is None:
+        monkeypatch.setattr(
+            OpenAICompatible, "_validate_uri_connectivity", lambda self: None
+        )
+
+
+@pytest.fixture
+def openai_compat_mocks():
+    """Mock responses for OpenAI compatible endpoints"""
+    with open(
+        pathlib.Path(__file__).parents[1] / "_assets" / "generators" / "openai.json"
+    ) as mock_openai:
+        return json.load(mock_openai)
+
+
+@pytest.fixture
+def hf_endpoint_mocks():
+    """Mock responses for Huggingface InferenceAPI based endpoints"""
+    with open(
+        pathlib.Path(__file__).parents[1]
+        / "_assets"
+        / "generators"
+        / "hf_inference.json"
+    ) as mock_openai:
+        return json.load(mock_openai)
+
+
+@pytest.fixture
+def watsonx_compat_mocks():
+    """Mock responses for watsonx.ai based endpoints"""
+    with open(
+        pathlib.Path(__file__).parents[1] / "_assets" / "generators" / "watsonx.json"
+    ) as mock_watsonx:
+        return json.load(mock_watsonx)
+
+
+@pytest.fixture
+def mistral_compat_mocks():
+    """Mock responses for OpenAI compatible endpoints"""
+    with open(
+        pathlib.Path(__file__).parents[1] / "_assets" / "generators" / "mistral.json"
+    ) as mock_mistral:
+        return json.load(mock_mistral)
+
+
+@pytest.fixture
+def anthropic_compat_mocks():
+    """Mock responses for the Anthropic Messages API"""
+    with open(
+        pathlib.Path(__file__).parents[1] / "_assets" / "generators" / "anthropic.json"
+    ) as mock_anthropic:
+        return json.load(mock_anthropic)
+
+
+@pytest.fixture
+def langchain_serve_mocks():
+    """Mock responses for a LangChain Serve `/invoke` endpoint"""
+    with open(
+        pathlib.Path(__file__).parents[1]
+        / "_assets"
+        / "generators"
+        / "langchain_serve.json"
+    ) as mock_langchain_serve:
+        return json.load(mock_langchain_serve)

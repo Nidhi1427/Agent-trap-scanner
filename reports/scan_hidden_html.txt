@@ -1,0 +1,37 @@
+{
+  "label": "possible_injection",
+  "score": 0.8293,
+  "threshold": 0.3731,
+  "word_count": 20,
+  "flags": [
+    "html_candidate_text_extracted"
+  ],
+  "top_features": [
+    {
+      "feature": "b:previous instructions",
+      "direction": "injection",
+      "contribution": 0.5367
+    },
+    {
+      "feature": "w:ignore",
+      "direction": "injection",
+      "contribution": 0.509
+    },
+    {
+      "feature": "w:instructions",
+      "direction": "injection",
+      "contribution": 0.4396
+    },
+    {
+      "feature": "b:ignore all",
+      "direction": "injection",
+      "contribution": 0.3767
+    },
+    {
+      "feature": "b:all previous",
+      "direction": "injection",
+      "contribution": 0.3746
+    }
+  ],
+  "notice": "A detector score is a screening signal, not proof of authorship, intent, or successful compromise."
+}

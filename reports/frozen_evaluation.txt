@@ -1,0 +1,28 @@
+Saved 30,000 features from 2,380 training rows to C:\Users\Nidhi\Downloads\CPI\CPI\CPI dataset\CPI dataset\models\agent_trap_model.json
+
+=== TF-IDF logistic baseline (validation threshold 0.373, target FPR < 10%) ===
+TEST n=510 rows / 255 carriers
+Metric (95% carrier-bootstrap CI):
+  accuracy: 0.861 [0.831, 0.886]
+  fpr: 0.055 [0.031, 0.086]
+  recall: 0.776 [0.722, 0.824]
+  precision: 0.934 [0.901, 0.962]
+  f1: 0.848 [0.811, 0.878]
+  auroc: 0.935 [0.915, 0.953]
+  average_precision: 0.949 [0.934, 0.962]
+  kind=document: FPR=0.000 (n=22 clean); recall=0.773 (n=22 injected)
+  kind=email: FPR=0.182 (n=44 clean); recall=0.864 (n=44 injected)
+  kind=table: FPR=0.000 (n=50 clean); recall=0.760 (n=50 injected)
+  kind=web: FPR=0.043 (n=139 clean); recall=0.755 (n=139 injected)
+  carrier_source=BIPIA-email: FPR=0.000 (n=14 clean); recall=0.714 (n=14 injected)
+  carrier_source=BIPIA-table: FPR=0.000 (n=50 clean); recall=0.760 (n=50 injected)
+  carrier_source=gemini: FPR=0.000 (n=3 clean); recall=1.000 (n=3 injected)
+  carrier_source=groq-gptoss: FPR=0.093 (n=43 clean); recall=0.791 (n=43 injected)
+  carrier_source=groq-qwen: FPR=0.097 (n=62 clean); recall=0.790 (n=62 injected)
+  carrier_source=wikipedia-human: FPR=0.048 (n=83 clean); recall=0.771 (n=83 injected)
+  hard_negative=False: FPR=0.047 (n=213 clean)
+  hard_negative=True: FPR=0.095 (n=42 clean)
+  recall by style: agent_tool=1.00(n=38)  authority_notice=0.86(n=35)  bipia_code=1.00(n=36)  bipia_obfuscated=0.23(n=35)  bipia_text=0.29(n=34)  latent_task=0.98(n=44)  override_ops=1.00(n=33)
+  recall by position: head=0.74(n=95)  middle=0.84(n=69)  tail=0.77(n=91)
+  recall by hiding: aria_label=0.67(n=30)  css_display_none=0.79(n=24)  html_comment=0.71(n=31)  none=0.82(n=131)  white_on_white=0.71(n=17)  zero_font=0.82(n=22)
+  recall by attack_source: BIPIA=0.51(n=105)  InjecAgent=1.00(n=38)  InjecAgent+team-wrappers=0.98(n=42)  Open-Prompt-Injection=1.00(n=33)  garak+team-wrappers=1.00(n=2)  team-authored=0.86(n=35)

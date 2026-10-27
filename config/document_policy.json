@@ -1,0 +1,14 @@
+{
+  "name": "demo-screening-policy-v1",
+  "description": "Screening workflow only. These thresholds are configurable and are not a security guarantee.",
+  "thresholds": {
+    "allow_below": 0.373,
+    "hold_at_or_above": 0.373,
+    "quarantine_at_or_above": 0.75
+  },
+  "actions": {
+    "allow": "continue through the demo workflow",
+    "hold_for_review": "stop automatic processing and request human review",
+    "quarantine": "record an isolated demo decision; never move or delete real files"
+  }
+}
